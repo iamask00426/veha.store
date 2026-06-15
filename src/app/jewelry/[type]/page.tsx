@@ -11,7 +11,7 @@ export default async function JewelryTypePage({
     <Suspense
       fallback={
         <div className="min-h-screen flex items-center justify-center">
-          <div className="animate-spin w-8 h-8 border-4 border-[#745B38] border-t-transparent rounded-full" />
+          <div className="animate-spin w-8 h-8 border-4 border-[#D06780] border-t-transparent rounded-full" />
         </div>
       }
     >

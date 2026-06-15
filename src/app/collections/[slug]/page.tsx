@@ -25,7 +25,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Banner */}
-      <div className="relative w-full h-64 md:h-80 bg-gradient-to-br from-[#3d2f1e] to-[#745B38] overflow-hidden">
+      <div className="relative w-full h-64 md:h-80 bg-gradient-to-br from-[#9C3E55] to-[#D06780] overflow-hidden">
         {collection.banner && (
           <Image
             src={collection.banner}
@@ -39,14 +39,14 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
         <div className="absolute inset-0 flex flex-col items-center justify-end text-center px-4 pb-10">
-          <span className="inline-block bg-[#C3A070]/20 border border-[#C3A070] text-[#F6EDE1] text-xs font-semibold px-4 py-1 rounded-full uppercase tracking-widest mb-3">
+          <span className="inline-block bg-[#A1A8B8]/20 border border-[#A1A8B8] text-[#FDE9EC] text-xs font-semibold px-4 py-1 rounded-full uppercase tracking-widest mb-3">
             Collection
           </span>
           <h1 className="text-4xl font-serif font-bold text-white drop-shadow-lg">
             {collection.name}
           </h1>
           {collection.description && (
-            <p className="text-[#F6EDE1]/80 text-sm mt-2 max-w-lg">
+            <p className="text-[#FDE9EC]/80 text-sm mt-2 max-w-lg">
               {collection.description}
             </p>
           )}
@@ -57,7 +57,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
         {/* Back link */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-sm text-[#745B38] font-semibold hover:text-[#5a4428] transition-colors mb-6"
+          className="inline-flex items-center gap-2 text-sm text-[#D06780] font-semibold hover:text-[#9C3E55] transition-colors mb-6"
         >
           <ArrowLeft size={16} />
           Back to Home
@@ -87,7 +87,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
               <Link
                 key={product.id}
                 href={`/product/${product.slug}`}
-                className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:border-[#C3A070] hover:shadow-lg transition-all duration-300"
+                className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:border-[#A1A8B8] hover:shadow-lg transition-all duration-300"
               >
                 <div className="relative aspect-square overflow-hidden bg-gray-50">
                   <Image
@@ -103,16 +103,16 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
                     </span>
                   )}
                   {product.badges.includes("Exclusive") && (
-                    <span className="absolute top-2 right-2 bg-[#745B38] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    <span className="absolute top-2 right-2 bg-[#D06780] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
                       EXCLUSIVE
                     </span>
                   )}
                 </div>
                 <div className="p-3">
-                  <p className="text-[11px] font-semibold text-[#C3A070] uppercase tracking-wide truncate">
-                    VEHA Jewels
+                  <p className="text-[11px] font-semibold text-[#A1A8B8] uppercase tracking-wide truncate">
+                    VEHA SILVER
                   </p>
-                  <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 mt-0.5 group-hover:text-[#745B38] transition-colors leading-snug">
+                  <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 mt-0.5 group-hover:text-[#D06780] transition-colors leading-snug">
                     {product.title}
                   </h3>
                   <StarRating
@@ -121,7 +121,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
                     size="sm"
                   />
                   <div className="flex items-center gap-2 mt-1.5 flex-wrap">
-                    <span className="font-bold text-[#745B38] text-sm">
+                    <span className="font-bold text-[#D06780] text-sm">
                       {formatINR(product.price)}
                     </span>
                     {product.mrp > product.price && (

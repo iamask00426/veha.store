@@ -65,7 +65,7 @@ export default function Navbar() {
         <div className="fixed inset-0 bg-black/50 z-[70] flex items-start justify-center pt-20">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl mx-4 p-4">
             <div className="flex items-center gap-3 mb-2">
-              <span className="text-sm font-medium text-gray-500">Search VEHA Jewels</span>
+              <span className="text-sm font-medium text-gray-500">Search VEHA SILVER</span>
               <button
                 onClick={() => setShowSearch(false)}
                 className="ml-auto p-1 rounded-full hover:bg-gray-100"
@@ -81,13 +81,17 @@ export default function Navbar() {
       <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center gap-6">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-1.5 flex-shrink-0">
-            <span className="text-[#C3A070] text-lg">♦</span>
+          <Link href="/" className="flex items-center gap-2 flex-shrink-0">
+            <img
+              src="/logo.jpg"
+              alt="VEHA SILVER"
+              className="h-10 w-10 rounded-full border border-gray-200 object-cover"
+            />
             <span
-              className="text-xl font-bold text-[#745B38] leading-none"
+              className="text-lg font-extrabold tracking-wider text-[#D06780] uppercase"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
             >
-              VEHA Jewels
+              VEHA SILVER
             </span>
           </Link>
 
@@ -100,7 +104,7 @@ export default function Navbar() {
               onMouseEnter={() => openMenu("categories")}
               onMouseLeave={closeMenu}
             >
-              <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#745B38] rounded-lg hover:bg-gray-50 transition-colors">
+              <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#D06780] rounded-lg hover:bg-gray-50 transition-colors">
                 Categories <ChevronDown size={14} className={activeMenu === "categories" ? "rotate-180" : ""} />
               </button>
               {activeMenu === "categories" && (
@@ -114,10 +118,10 @@ export default function Navbar() {
                         <Link
                           key={cat.slug}
                           href={`/category/${cat.slug}`}
-                          className="flex items-center gap-2 p-2.5 rounded-xl hover:bg-[#F6EDE1] hover:text-[#745B38] transition-colors group"
+                          className="flex items-center gap-2 p-2.5 rounded-xl hover:bg-[#FDE9EC] hover:text-[#D06780] transition-colors group"
                         >
                           <span className="text-xl">{cat.icon}</span>
-                          <span className="text-xs font-medium text-gray-700 group-hover:text-[#745B38] leading-tight">
+                          <span className="text-xs font-medium text-gray-700 group-hover:text-[#D06780] leading-tight">
                             {cat.name}
                           </span>
                         </Link>
@@ -134,7 +138,7 @@ export default function Navbar() {
               onMouseEnter={() => openMenu("metal")}
               onMouseLeave={closeMenu}
             >
-              <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#745B38] rounded-lg hover:bg-gray-50 transition-colors">
+              <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#D06780] rounded-lg hover:bg-gray-50 transition-colors">
                 Metal <ChevronDown size={14} className={activeMenu === "metal" ? "rotate-180" : ""} />
               </button>
               {activeMenu === "metal" && (
@@ -165,7 +169,7 @@ export default function Navbar() {
               onMouseEnter={() => openMenu("price")}
               onMouseLeave={closeMenu}
             >
-              <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#745B38] rounded-lg hover:bg-gray-50 transition-colors">
+              <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#D06780] rounded-lg hover:bg-gray-50 transition-colors">
                 Price <ChevronDown size={14} className={activeMenu === "price" ? "rotate-180" : ""} />
               </button>
               {activeMenu === "price" && (
@@ -179,7 +183,7 @@ export default function Navbar() {
                         <Link
                           key={p.label}
                           href={p.href}
-                          className="flex items-center justify-center px-4 py-3 rounded-xl border-2 border-gray-100 text-sm font-semibold text-gray-700 hover:border-[#745B38] hover:text-[#745B38] transition-colors"
+                          className="flex items-center justify-center px-4 py-3 rounded-xl border-2 border-gray-100 text-sm font-semibold text-gray-700 hover:border-[#D06780] hover:text-[#D06780] transition-colors"
                         >
                           {p.label}
                         </Link>
@@ -190,7 +194,7 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link href="/jewelry/new" className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#745B38] rounded-lg hover:bg-gray-50 transition-colors">
+            <Link href="/jewelry/new" className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#D06780] rounded-lg hover:bg-gray-50 transition-colors">
               New Arrivals
             </Link>
             <Link href="/sale" className="px-3 py-2 text-sm font-medium text-red-600 hover:text-red-700 rounded-lg hover:bg-red-50 transition-colors">
@@ -221,7 +225,7 @@ export default function Navbar() {
             <Link href="/cart" className="relative p-2.5 rounded-full hover:bg-gray-100 transition-colors" aria-label="Cart">
               <ShoppingBag size={20} className="text-gray-700" />
               {totalItems > 0 && (
-                <span className="absolute top-1 right-1 bg-[#745B38] text-[#F6EDE1] text-[9px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                <span className="absolute top-1 right-1 bg-[#D06780] text-[#FDE9EC] text-[9px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
                   {totalItems > 9 ? "9+" : totalItems}
                 </span>
               )}

@@ -5,7 +5,7 @@ interface BadgeProps {
 
 const variantStyles: Record<BadgeProps["variant"], string> = {
   new: "bg-blue-500 text-white",
-  bestseller: "bg-[#745B38] text-[#F6EDE1]",
+  bestseller: "bg-[#D06780] text-[#FDE9EC]",
   bogo: "bg-green-600 text-white",
   sale: "bg-red-500 text-white",
   exclusive: "bg-purple-600 text-white",

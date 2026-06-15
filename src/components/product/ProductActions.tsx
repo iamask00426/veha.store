@@ -66,8 +66,8 @@ export default function ProductActions({ product }: ProductActionsProps) {
               : addedFeedback
               ? "bg-green-600 text-white scale-[0.98]"
               : inCart
-              ? "bg-[#5a4428] text-[#F6EDE1]"
-              : "bg-[#745B38] text-[#F6EDE1] hover:bg-[#5a4428] active:scale-[0.98]"
+              ? "bg-[#9C3E55] text-[#FDE9EC]"
+              : "bg-[#D06780] text-[#FDE9EC] hover:bg-[#9C3E55] active:scale-[0.98]"
           }`}
         >
           <ShoppingCart size={20} />
@@ -87,7 +87,7 @@ export default function ProductActions({ product }: ProductActionsProps) {
         className={`w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm border-2 transition-all duration-200 ${
           wishlisted
             ? "border-red-400 bg-red-50 text-red-500"
-            : "border-[#745B38] text-[#745B38] hover:bg-[#fdf7f0]"
+            : "border-[#D06780] text-[#D06780] hover:bg-[#fdf7f0]"
         }`}
       >
         <Heart

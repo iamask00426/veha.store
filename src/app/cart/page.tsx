@@ -77,7 +77,7 @@ export default function CartPage() {
         </p>
         <Link
           href="/"
-          className="px-8 py-3 bg-[#745B38] text-[#F6EDE1] rounded-xl font-bold text-base hover:bg-[#5a4428] transition-colors shadow-md"
+          className="px-8 py-3 bg-[#D06780] text-[#FDE9EC] rounded-xl font-bold text-base hover:bg-[#9C3E55] transition-colors shadow-md"
         >
           Shop Now
         </Link>
@@ -90,13 +90,13 @@ export default function CartPage() {
       {/* Header */}
       <div
         className="py-6 px-4"
-        style={{ background: "linear-gradient(135deg, #745B38 0%, #9a7a52 100%)" }}
+        style={{ background: "linear-gradient(135deg, #D06780 0%, #E591A4 100%)" }}
       >
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <h1 className="text-2xl font-serif font-bold text-[#F6EDE1]">
+          <h1 className="text-2xl font-serif font-bold text-[#FDE9EC]">
             My Cart
           </h1>
-          <span className="text-[#F6EDE1]/80 text-sm">
+          <span className="text-[#FDE9EC]/80 text-sm">
             {items.reduce((s, i) => s + i.qty, 0)} items
           </span>
         </div>
@@ -135,8 +135,8 @@ export default function CartPage() {
 
                 {/* Info */}
                 <div className="flex-1 min-w-0">
-                  <p className="text-[11px] font-semibold text-[#C3A070] uppercase tracking-wide">
-                    VEHA Jewels
+                  <p className="text-[11px] font-semibold text-[#A1A8B8] uppercase tracking-wide">
+                    VEHA SILVER
                   </p>
                   <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 leading-snug mt-0.5">
                     {item.title}
@@ -157,7 +157,7 @@ export default function CartPage() {
                       max={10}
                     />
                     <div className="text-right">
-                      <p className="font-bold text-[#745B38] text-base">
+                      <p className="font-bold text-[#D06780] text-base">
                         {formatINR(item.price * item.qty)}
                       </p>
                       {item.mrp > item.price && (
@@ -225,7 +225,7 @@ export default function CartPage() {
               <div className="border-t border-gray-100 mt-4 pt-4">
                 <div className="flex justify-between font-bold text-base">
                   <span>Total</span>
-                  <span className="text-[#745B38] text-lg">{formatINR(total)}</span>
+                  <span className="text-[#D06780] text-lg">{formatINR(total)}</span>
                 </div>
                 {(productDiscount + couponDiscount) > 0 && (
                   <p className="text-xs text-green-600 font-semibold mt-1">
@@ -265,11 +265,11 @@ export default function CartPage() {
                         onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
                         onKeyDown={(e) => e.key === "Enter" && applyCoupon()}
                         placeholder="Enter code"
-                        className="flex-1 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#C3A070] focus:border-[#745B38]"
+                        className="flex-1 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#A1A8B8] focus:border-[#D06780]"
                       />
                       <button
                         onClick={applyCoupon}
-                        className="px-4 py-2 bg-[#745B38] text-white rounded-xl text-sm font-semibold hover:bg-[#5a4428] transition-colors"
+                        className="px-4 py-2 bg-[#D06780] text-white rounded-xl text-sm font-semibold hover:bg-[#9C3E55] transition-colors"
                       >
                         Apply
                       </button>
@@ -285,7 +285,7 @@ export default function CartPage() {
               </div>
 
               {/* Checkout button */}
-              <button className="w-full mt-5 py-3.5 bg-[#745B38] text-[#F6EDE1] rounded-xl font-bold text-base hover:bg-[#5a4428] active:scale-[0.98] transition-all shadow-md">
+              <button className="w-full mt-5 py-3.5 bg-[#D06780] text-[#FDE9EC] rounded-xl font-bold text-base hover:bg-[#9C3E55] active:scale-[0.98] transition-all shadow-md">
                 Proceed to Checkout
               </button>
 

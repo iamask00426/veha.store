@@ -66,7 +66,7 @@ export default function FilterChips({
       {chips.map((chip) => (
         <span
           key={`${chip.key}-${chip.value}`}
-          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#745B38] bg-[#fdf7f0] text-xs font-medium text-[#745B38] capitalize"
+          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#D06780] bg-[#fdf7f0] text-xs font-medium text-[#D06780] capitalize"
         >
           {chip.label}
           <button

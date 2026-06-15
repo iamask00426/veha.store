@@ -73,7 +73,7 @@ export default function MobileNav() {
         <Link href="/cart" className="relative p-2">
           <ShoppingBag size={22} className="text-gray-700" />
           {totalItems > 0 && (
-            <span className="absolute -top-0.5 -right-0.5 bg-[#745B38] text-[#F6EDE1] text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+            <span className="absolute -top-0.5 -right-0.5 bg-[#D06780] text-[#FDE9EC] text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
               {totalItems}
             </span>
           )}
@@ -104,7 +104,12 @@ export default function MobileNav() {
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
           <Link href="/" onClick={close} className="flex items-center gap-2">
-            <span className="text-lg font-serif font-bold text-[#745B38]">♦ VEHA Jewels</span>
+            <img
+              src="/logo.jpg"
+              alt="VEHA SILVER"
+              className="h-8 w-8 rounded-full object-cover"
+            />
+            <span className="text-base font-bold text-[#D06780] tracking-wider uppercase">VEHA SILVER</span>
           </Link>
           <button
             onClick={close}
@@ -151,7 +156,7 @@ export default function MobileNav() {
                       key={item.label}
                       href={item.href}
                       onClick={close}
-                      className="block px-8 py-2.5 text-sm text-gray-600 hover:text-[#745B38] hover:bg-gray-100 transition-colors"
+                      className="block px-8 py-2.5 text-sm text-gray-600 hover:text-[#D06780] hover:bg-gray-100 transition-colors"
                     >
                       {item.label}
                     </Link>
@@ -167,14 +172,14 @@ export default function MobileNav() {
           <Link
             href="/login"
             onClick={close}
-            className="flex items-center justify-center w-full py-2.5 border-2 border-[#745B38] text-[#745B38] font-semibold text-sm rounded-full hover:bg-[#745B38] hover:text-white transition-colors"
+            className="flex items-center justify-center w-full py-2.5 border-2 border-[#D06780] text-[#D06780] font-semibold text-sm rounded-full hover:bg-[#D06780] hover:text-white transition-colors"
           >
             Login / Sign Up
           </Link>
           <Link
             href="/cart"
             onClick={close}
-            className="flex items-center justify-center gap-2 w-full py-2.5 bg-[#745B38] text-[#F6EDE1] font-semibold text-sm rounded-full hover:bg-[#5a4429] transition-colors"
+            className="flex items-center justify-center gap-2 w-full py-2.5 bg-[#D06780] text-[#FDE9EC] font-semibold text-sm rounded-full hover:bg-[#9C3E55] transition-colors"
           >
             <ShoppingBag size={16} />
             View Cart {totalItems > 0 && `(${totalItems})`}

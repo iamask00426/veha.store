@@ -79,10 +79,10 @@ export default function HeroBannerCarousel() {
           {/* Text content */}
           <div
             key={current}
-            className="text-[#F6EDE1] space-y-5"
+            className="text-[#FDE9EC] space-y-5"
             style={{ animation: "heroFadeIn 0.6s ease forwards" }}
           >
-            <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase bg-white/20 text-[#C3A070] px-3 py-1.5 rounded-full">
+            <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase bg-white/20 text-[#A1A8B8] px-3 py-1.5 rounded-full">
               {slide.eyebrow}
             </span>
             <h1
@@ -97,13 +97,13 @@ export default function HeroBannerCarousel() {
             <div className="flex flex-wrap gap-3 pt-2">
               <Link
                 href={slide.cta1.href}
-                className="inline-block bg-[#C3A070] text-[#1a1a1a] font-semibold px-6 py-3 rounded-full hover:bg-[#d4b47a] transition-colors text-sm"
+                className="inline-block bg-[#A1A8B8] text-[#1a1a1a] font-semibold px-6 py-3 rounded-full hover:bg-[#d4b47a] transition-colors text-sm"
               >
                 {slide.cta1.label}
               </Link>
               <Link
                 href={slide.cta2.href}
-                className="inline-block border border-[#F6EDE1]/50 text-[#F6EDE1] font-semibold px-6 py-3 rounded-full hover:bg-white/10 transition-colors text-sm"
+                className="inline-block border border-[#FDE9EC]/50 text-[#FDE9EC] font-semibold px-6 py-3 rounded-full hover:bg-white/10 transition-colors text-sm"
               >
                 {slide.cta2.label}
               </Link>
@@ -151,7 +151,7 @@ export default function HeroBannerCarousel() {
             key={i}
             onClick={() => go(i)}
             className={`h-2 rounded-full transition-all duration-300 ${
-              i === current ? "bg-[#C3A070] w-6" : "bg-white/40 w-2"
+              i === current ? "bg-[#A1A8B8] w-6" : "bg-white/40 w-2"
             }`}
             aria-label={`Go to slide ${i + 1}`}
           />

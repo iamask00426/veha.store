@@ -63,7 +63,7 @@ function ProductGridCard({ product }: { product: Product }) {
   return (
     <Link
       href={`/product/${product.slug}`}
-      className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:border-[#C3A070] hover:shadow-lg transition-all duration-300"
+      className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:border-[#A1A8B8] hover:shadow-lg transition-all duration-300"
     >
       <div className="relative aspect-square overflow-hidden bg-gray-50">
         <Image
@@ -79,16 +79,16 @@ function ProductGridCard({ product }: { product: Product }) {
           </span>
         )}
         {product.badges.includes("New") && (
-          <span className="absolute top-2 right-2 bg-[#745B38] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+          <span className="absolute top-2 right-2 bg-[#D06780] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
             NEW
           </span>
         )}
       </div>
       <div className="p-3">
-        <p className="text-[11px] font-semibold text-[#C3A070] uppercase tracking-wide truncate">
-          VEHA Jewels
+        <p className="text-[11px] font-semibold text-[#A1A8B8] uppercase tracking-wide truncate">
+          VEHA SILVER
         </p>
-        <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 mt-0.5 group-hover:text-[#745B38] transition-colors leading-snug">
+        <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 mt-0.5 group-hover:text-[#D06780] transition-colors leading-snug">
           {product.title}
         </h3>
         <StarRating
@@ -97,7 +97,7 @@ function ProductGridCard({ product }: { product: Product }) {
           size="sm"
         />
         <div className="flex items-center gap-2 mt-1.5 flex-wrap">
-          <span className="font-bold text-[#745B38] text-sm">
+          <span className="font-bold text-[#D06780] text-sm">
             {formatINR(product.price)}
           </span>
           {product.mrp > product.price && (
@@ -164,12 +164,12 @@ export default function ListingContent({ type }: { type: string }) {
       {/* Page header */}
       <div
         className="py-8 px-4 text-center"
-        style={{ background: "linear-gradient(135deg, #745B38 0%, #9a7a52 100%)" }}
+        style={{ background: "linear-gradient(135deg, #D06780 0%, #E591A4 100%)" }}
       >
-        <h1 className="text-3xl font-serif font-bold text-[#F6EDE1]">
+        <h1 className="text-3xl font-serif font-bold text-[#FDE9EC]">
           {typeInfo.label}
         </h1>
-        <p className="text-[#F6EDE1]/80 mt-1 text-sm">
+        <p className="text-[#FDE9EC]/80 mt-1 text-sm">
           {sorted.length} products
         </p>
       </div>
@@ -179,7 +179,7 @@ export default function ListingContent({ type }: { type: string }) {
         <div className="flex items-center justify-between mb-4 lg:hidden">
           <button
             onClick={() => setMobileFilterOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 shadow-sm hover:border-[#C3A070]"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 shadow-sm hover:border-[#A1A8B8]"
           >
             <SlidersHorizontal size={16} />
             Filters
@@ -232,7 +232,7 @@ export default function ListingContent({ type }: { type: string }) {
                 <p className="text-gray-500 mb-4">Try adjusting or clearing your filters.</p>
                 <button
                   onClick={clearAll}
-                  className="px-6 py-2 bg-[#745B38] text-white rounded-xl font-semibold hover:bg-[#5a4428] transition-colors"
+                  className="px-6 py-2 bg-[#D06780] text-white rounded-xl font-semibold hover:bg-[#9C3E55] transition-colors"
                 >
                   Clear Filters
                 </button>
@@ -251,7 +251,7 @@ export default function ListingContent({ type }: { type: string }) {
                 <button
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
                   disabled={page === 1}
-                  className="px-4 py-2 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 disabled:opacity-40 hover:border-[#C3A070] transition-all"
+                  className="px-4 py-2 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 disabled:opacity-40 hover:border-[#A1A8B8] transition-all"
                 >
                   ← Prev
                 </button>
@@ -261,7 +261,7 @@ export default function ListingContent({ type }: { type: string }) {
                 <button
                   onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                   disabled={page === totalPages}
-                  className="px-4 py-2 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 disabled:opacity-40 hover:border-[#C3A070] transition-all"
+                  className="px-4 py-2 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 disabled:opacity-40 hover:border-[#A1A8B8] transition-all"
                 >
                   Next →
                 </button>
@@ -299,7 +299,7 @@ export default function ListingContent({ type }: { type: string }) {
             />
             <button
               onClick={() => setMobileFilterOpen(false)}
-              className="w-full mt-4 py-3 bg-[#745B38] text-white rounded-xl font-bold hover:bg-[#5a4428] transition-colors"
+              className="w-full mt-4 py-3 bg-[#D06780] text-white rounded-xl font-bold hover:bg-[#9C3E55] transition-colors"
             >
               View {filtered.length} Results
             </button>

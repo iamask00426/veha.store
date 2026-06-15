@@ -38,10 +38,10 @@ export default function VariantSelector({
               disabled={isOOS}
               className={`relative px-4 py-2 rounded-xl border text-sm font-medium transition-all duration-200 ${
                 isSelected
-                  ? "bg-[#745B38] text-[#F6EDE1] border-[#745B38] shadow-md"
+                  ? "bg-[#D06780] text-[#FDE9EC] border-[#D06780] shadow-md"
                   : isOOS
                   ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed line-through"
-                  : "bg-white text-gray-700 border-gray-200 hover:border-[#C3A070] hover:text-[#745B38]"
+                  : "bg-white text-gray-700 border-gray-200 hover:border-[#A1A8B8] hover:text-[#D06780]"
               }`}
               aria-label={`${variant.label}${isOOS ? " (out of stock)" : ""}`}
             >

@@ -115,8 +115,8 @@ export default function ProductCard({ product }: ProductCardProps) {
       {/* Card body */}
       <div className="p-3 flex flex-col flex-1">
         <Link href={`/product/${product.slug}`} className="flex-1">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-[#8A775C] mb-1">
-            VEHA Jewels
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-[#E591A4] mb-1">
+            VEHA SILVER
           </p>
           <h3 className="text-sm font-medium text-gray-900 line-clamp-2 leading-snug mb-1.5">
             {product.title}
@@ -147,7 +147,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           className={`mt-3 w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all ${
             inCart
               ? "bg-green-600 text-white hover:bg-green-700"
-              : "bg-[#745B38] text-[#F6EDE1] hover:bg-[#5a4429]"
+              : "bg-[#D06780] text-[#FDE9EC] hover:bg-[#9C3E55]"
           }`}
         >
           <ShoppingBag size={15} />

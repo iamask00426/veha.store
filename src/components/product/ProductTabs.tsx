@@ -57,13 +57,13 @@ export default function ProductTabs({
             onClick={() => setActive(tab.id)}
             className={`px-5 py-3 text-sm font-semibold transition-all duration-200 relative ${
               active === tab.id
-                ? "text-[#745B38]"
+                ? "text-[#D06780]"
                 : "text-gray-500 hover:text-gray-800"
             }`}
           >
             {tab.label}
             {active === tab.id && (
-              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#745B38] rounded-t-full" />
+              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D06780] rounded-t-full" />
             )}
           </button>
         ))}
@@ -134,10 +134,10 @@ export default function ProductTabs({
                       <img
                         src={review.avatar}
                         alt={review.customerName}
-                        className="w-10 h-10 rounded-full object-cover border-2 border-[#C3A070]"
+                        className="w-10 h-10 rounded-full object-cover border-2 border-[#A1A8B8]"
                       />
                     ) : (
-                      <div className="w-10 h-10 rounded-full bg-[#745B38] flex items-center justify-center text-white font-bold text-sm">
+                      <div className="w-10 h-10 rounded-full bg-[#D06780] flex items-center justify-center text-white font-bold text-sm">
                         {review.customerName.charAt(0)}
                       </div>
                     )}

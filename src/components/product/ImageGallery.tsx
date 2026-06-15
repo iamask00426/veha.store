@@ -41,8 +41,8 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
             onClick={() => setMainIdx(i)}
             className={`flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden border-2 transition-all duration-200 ${
               i === mainIdx
-                ? "border-[#745B38] ring-2 ring-[#745B38] ring-offset-1"
-                : "border-gray-200 hover:border-[#C3A070]"
+                ? "border-[#D06780] ring-2 ring-[#D06780] ring-offset-1"
+                : "border-gray-200 hover:border-[#A1A8B8]"
             }`}
             aria-label={`View image ${i + 1}`}
           >
@@ -115,7 +115,7 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
                   onClick={() => setMainIdx(i)}
                   className={`rounded-full transition-all duration-200 ${
                     i === mainIdx
-                      ? "w-4 h-1.5 bg-[#745B38]"
+                      ? "w-4 h-1.5 bg-[#D06780]"
                       : "w-1.5 h-1.5 bg-white/70"
                   }`}
                   aria-label={`Go to image ${i + 1}`}

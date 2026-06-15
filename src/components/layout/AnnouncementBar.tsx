@@ -19,7 +19,7 @@ export default function AnnouncementBar() {
   const doubled = marqueeText + "   ◆   " + marqueeText;
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-r from-[#745B38] via-[#8A775C] to-[#745B38] text-[#F6EDE1] py-2 select-none">
+    <div className="relative overflow-hidden bg-gradient-to-r from-[#D06780] via-[#E591A4] to-[#D06780] text-[#FDE9EC] py-2 select-none">
       <div className="flex items-center">
         <div className="flex-1 overflow-hidden">
           <div className="flex whitespace-nowrap" style={{ animation: "marquee 40s linear infinite" }}>
@@ -32,7 +32,7 @@ export default function AnnouncementBar() {
           className="flex-shrink-0 mr-3 ml-2 p-1 rounded-full hover:bg-white/20 transition-colors"
           aria-label="Dismiss announcement"
         >
-          <X size={14} className="text-[#F6EDE1]" />
+          <X size={14} className="text-[#FDE9EC]" />
         </button>
       </div>
       <style>{`

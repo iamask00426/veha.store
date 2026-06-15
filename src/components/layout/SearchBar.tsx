@@ -82,11 +82,11 @@ export default function SearchBar({ onClose, autoFocus }: SearchBarProps) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={placeholders[placeholderIndex]}
-          className="w-full bg-gray-100 rounded-full py-2.5 pl-4 pr-11 text-sm text-gray-800 placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-[#745B38]/30 transition-all"
+          className="w-full bg-gray-100 rounded-full py-2.5 pl-4 pr-11 text-sm text-gray-800 placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-[#D06780]/30 transition-all"
         />
         <button
           type="submit"
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-[#745B38] hover:text-[#5a4429] transition-colors"
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-[#D06780] hover:text-[#9C3E55] transition-colors"
         >
           <Search size={18} />
         </button>
@@ -108,7 +108,7 @@ export default function SearchBar({ onClose, autoFocus }: SearchBarProps) {
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-900 truncate">{product.title}</p>
                 <p className="text-xs text-gray-400 truncate">
-                  VEHA Jewels · ₹{product.price.toLocaleString()}
+                  VEHA SILVER · ₹{product.price.toLocaleString()}
                 </p>
               </div>
               <Search size={14} className="text-gray-300 flex-shrink-0" />
@@ -117,7 +117,7 @@ export default function SearchBar({ onClose, autoFocus }: SearchBarProps) {
           <div className="border-t px-4 py-2">
             <button
               onClick={handleSubmit as React.MouseEventHandler}
-              className="text-xs text-[#745B38] font-medium hover:underline"
+              className="text-xs text-[#D06780] font-medium hover:underline"
             >
               See all results for &ldquo;{query}&rdquo; →
             </button>

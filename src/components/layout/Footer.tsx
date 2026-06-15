@@ -4,7 +4,7 @@ const footerLinks = [
   {
     heading: "Company",
     links: [
-      { label: "About VEHA Jewels", href: "#" },
+      { label: "About VEHA SILVER", href: "#" },
       { label: "Blog", href: "#" },
       { label: "Careers", href: "#" },
       { label: "Press", href: "#" },
@@ -37,13 +37,17 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Brand column */}
           <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-[#C3A070] text-xl">♦</span>
+            <div className="flex items-center gap-2.5 mb-4">
+              <img
+                src="/logo.jpg"
+                alt="VEHA SILVER"
+                className="h-10 w-10 rounded-full border border-gray-800 object-cover"
+              />
               <span
-                className="text-2xl font-bold text-white"
+                className="text-xl font-bold text-white tracking-wider uppercase"
                 style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
               >
-                VEHA Jewels
+                VEHA SILVER
               </span>
             </div>
             <p className="text-sm text-[#9c9087] leading-relaxed mb-5">
@@ -53,7 +57,7 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               <a
                 href="#"
-                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#745B38] transition-colors"
+                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D06780] transition-colors"
                 aria-label="Instagram"
               >
                 <svg
@@ -65,7 +69,7 @@ export default function Footer() {
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="text-[#F6EDE1]"
+                  className="text-[#FDE9EC]"
                 >
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -74,7 +78,7 @@ export default function Footer() {
               </a>
               <a
                 href="#"
-                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#745B38] transition-colors"
+                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D06780] transition-colors"
                 aria-label="Facebook"
               >
                 <svg
@@ -86,14 +90,14 @@ export default function Footer() {
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="text-[#F6EDE1]"
+                  className="text-[#FDE9EC]"
                 >
                   <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                 </svg>
               </a>
               <a
                 href="#"
-                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#745B38] transition-colors"
+                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D06780] transition-colors"
                 aria-label="Twitter"
               >
                 <svg
@@ -105,7 +109,7 @@ export default function Footer() {
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="text-[#F6EDE1]"
+                  className="text-[#FDE9EC]"
                 >
                   <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
                 </svg>
@@ -124,7 +128,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-[#9c9087] hover:text-[#C3A070] transition-colors"
+                      className="text-sm text-[#9c9087] hover:text-[#A1A8B8] transition-colors"
                     >
                       {link.label}
                     </a>
@@ -143,21 +147,21 @@ export default function Footer() {
             <div className="space-y-2.5">
               <a
                 href="#"
-                className="flex items-center gap-2.5 px-3 py-2 bg-white/10 rounded-xl hover:bg-[#745B38]/60 transition-colors group"
+                className="flex items-center gap-2.5 px-3 py-2 bg-white/10 rounded-xl hover:bg-[#D06780]/60 transition-colors group"
               >
                 <span className="text-xl">🍎</span>
                 <div>
-                  <p className="text-[10px] text-[#9c9087] group-hover:text-[#F6EDE1]">Download on the</p>
+                  <p className="text-[10px] text-[#9c9087] group-hover:text-[#FDE9EC]">Download on the</p>
                   <p className="text-xs font-semibold text-white">App Store</p>
                 </div>
               </a>
               <a
                 href="#"
-                className="flex items-center gap-2.5 px-3 py-2 bg-white/10 rounded-xl hover:bg-[#745B38]/60 transition-colors group"
+                className="flex items-center gap-2.5 px-3 py-2 bg-white/10 rounded-xl hover:bg-[#D06780]/60 transition-colors group"
               >
                 <span className="text-xl">▶️</span>
                 <div>
-                  <p className="text-[10px] text-[#9c9087] group-hover:text-[#F6EDE1]">Get it on</p>
+                  <p className="text-[10px] text-[#9c9087] group-hover:text-[#FDE9EC]">Get it on</p>
                   <p className="text-xs font-semibold text-white">Google Play</p>
                 </div>
               </a>
@@ -168,7 +172,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-[#6b635a]">
-            © {new Date().getFullYear()} VEHA Jewels. All rights reserved.
+            © {new Date().getFullYear()} VEHA SILVER. All rights reserved.
           </p>
           <div className="flex items-center gap-4 flex-wrap justify-center">
             {["🔒 Secure Payments", "✓ BIS Hallmarked", "⭐ 4.8/5 Rating", "🚚 Pan-India Delivery"].map(

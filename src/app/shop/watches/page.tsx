@@ -46,7 +46,7 @@ function WatchCard({ product }: { product: Product }) {
   return (
     <Link
       href={`/product/${product.slug}`}
-      className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:border-[#C3A070] hover:shadow-lg transition-all duration-300"
+      className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:border-[#A1A8B8] hover:shadow-lg transition-all duration-300"
     >
       <div className="relative aspect-square overflow-hidden bg-gray-50">
         <Image
@@ -62,21 +62,21 @@ function WatchCard({ product }: { product: Product }) {
           </span>
         )}
         {product.badges.includes("New") && (
-          <span className="absolute top-2 right-2 bg-[#745B38] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+          <span className="absolute top-2 right-2 bg-[#D06780] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
             NEW
           </span>
         )}
       </div>
       <div className="p-3">
-        <p className="text-[11px] font-semibold text-[#C3A070] uppercase tracking-wide truncate">
-          VEHA Jewels
+        <p className="text-[11px] font-semibold text-[#A1A8B8] uppercase tracking-wide truncate">
+          VEHA SILVER
         </p>
-        <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 mt-0.5 group-hover:text-[#745B38] transition-colors leading-snug">
+        <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 mt-0.5 group-hover:text-[#D06780] transition-colors leading-snug">
           {product.title}
         </h3>
         <StarRating rating={product.rating} reviewCount={product.reviewCount} size="sm" />
         <div className="flex items-center gap-2 mt-1.5 flex-wrap">
-          <span className="font-bold text-[#745B38] text-sm">{formatINR(product.price)}</span>
+          <span className="font-bold text-[#D06780] text-sm">{formatINR(product.price)}</span>
           {product.mrp > product.price && (
             <span className="text-xs text-gray-400 line-through">{formatINR(product.mrp)}</span>
           )}
@@ -128,7 +128,7 @@ function WatchesContent() {
     <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm space-y-6">
       <div className="flex items-center justify-between">
         <h2 className="font-bold text-gray-900">Filters</h2>
-        <button onClick={clearAll} className="text-xs text-[#745B38] hover:underline font-medium">
+        <button onClick={clearAll} className="text-xs text-[#D06780] hover:underline font-medium">
           Clear All
         </button>
       </div>
@@ -143,8 +143,8 @@ function WatchesContent() {
               onClick={() => setPriceRange(priceRange === r.value ? "" : r.value)}
               className={`w-full text-left px-3 py-2 rounded-lg text-sm border transition-all ${
                 priceRange === r.value
-                  ? "bg-[#745B38] text-white border-[#745B38]"
-                  : "bg-white text-gray-700 border-gray-200 hover:border-[#C3A070]"
+                  ? "bg-[#D06780] text-white border-[#D06780]"
+                  : "bg-white text-gray-700 border-gray-200 hover:border-[#A1A8B8]"
               }`}
             >
               {r.label}
@@ -163,8 +163,8 @@ function WatchesContent() {
               onClick={() => setSelectedGender(selectedGender === g ? "" : g)}
               className={`px-3 py-1.5 rounded-full text-sm border font-medium transition-all ${
                 selectedGender === g
-                  ? "bg-[#745B38] text-white border-[#745B38]"
-                  : "bg-white text-gray-700 border-gray-200 hover:border-[#C3A070]"
+                  ? "bg-[#D06780] text-white border-[#D06780]"
+                  : "bg-white text-gray-700 border-gray-200 hover:border-[#A1A8B8]"
               }`}
             >
               {g}
@@ -180,13 +180,13 @@ function WatchesContent() {
       {/* Header */}
       <div
         className="py-8 px-4 text-center"
-        style={{ background: "linear-gradient(135deg, #745B38 0%, #9a7a52 100%)" }}
+        style={{ background: "linear-gradient(135deg, #D06780 0%, #E591A4 100%)" }}
       >
         <div className="flex items-center justify-center gap-3 mb-2">
-          <Watch className="text-[#C3A070]" size={28} />
-          <h1 className="text-3xl font-serif font-bold text-[#F6EDE1]">Watches</h1>
+          <Watch className="text-[#A1A8B8]" size={28} />
+          <h1 className="text-3xl font-serif font-bold text-[#FDE9EC]">Watches</h1>
         </div>
-        <p className="text-[#F6EDE1]/80 text-sm">{sorted.length} products</p>
+        <p className="text-[#FDE9EC]/80 text-sm">{sorted.length} products</p>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-6">
@@ -194,7 +194,7 @@ function WatchesContent() {
         <div className="flex items-center justify-between mb-4 lg:hidden">
           <button
             onClick={() => setMobileFilterOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 bg-white text-sm font-medium shadow-sm hover:border-[#C3A070]"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 bg-white text-sm font-medium shadow-sm hover:border-[#A1A8B8]"
           >
             <SlidersHorizontal size={16} />
             Filters
@@ -225,7 +225,7 @@ function WatchesContent() {
                 <Watch size={56} className="text-gray-300 mb-4" />
                 <h2 className="text-xl font-bold text-gray-700 mb-2">No watches found</h2>
                 <p className="text-gray-500 mb-4">Try clearing some filters.</p>
-                <button onClick={clearAll} className="px-6 py-2 bg-[#745B38] text-white rounded-xl font-semibold">
+                <button onClick={clearAll} className="px-6 py-2 bg-[#D06780] text-white rounded-xl font-semibold">
                   Clear Filters
                 </button>
               </div>
@@ -238,12 +238,12 @@ function WatchesContent() {
             {totalPages > 1 && (
               <div className="flex items-center justify-center gap-2 mt-8">
                 <button onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page === 1}
-                  className="px-4 py-2 rounded-xl border border-gray-200 bg-white text-sm font-medium disabled:opacity-40 hover:border-[#C3A070] transition-all">
+                  className="px-4 py-2 rounded-xl border border-gray-200 bg-white text-sm font-medium disabled:opacity-40 hover:border-[#A1A8B8] transition-all">
                   ← Prev
                 </button>
                 <span className="text-sm text-gray-600 px-2">Page {page} of {totalPages}</span>
                 <button onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={page === totalPages}
-                  className="px-4 py-2 rounded-xl border border-gray-200 bg-white text-sm font-medium disabled:opacity-40 hover:border-[#C3A070] transition-all">
+                  className="px-4 py-2 rounded-xl border border-gray-200 bg-white text-sm font-medium disabled:opacity-40 hover:border-[#A1A8B8] transition-all">
                   Next →
                 </button>
               </div>
@@ -265,7 +265,7 @@ function WatchesContent() {
             </div>
             <FilterPanel />
             <button onClick={() => setMobileFilterOpen(false)}
-              className="w-full mt-4 py-3 bg-[#745B38] text-white rounded-xl font-bold hover:bg-[#5a4428] transition-colors">
+              className="w-full mt-4 py-3 bg-[#D06780] text-white rounded-xl font-bold hover:bg-[#9C3E55] transition-colors">
               View {filtered.length} Results
             </button>
           </div>
@@ -278,7 +278,7 @@ function WatchesContent() {
 export default function WatchesPage() {
   return (
     <Suspense fallback={<div className="min-h-screen flex items-center justify-center">
-      <div className="animate-spin w-8 h-8 border-4 border-[#745B38] border-t-transparent rounded-full" />
+      <div className="animate-spin w-8 h-8 border-4 border-[#D06780] border-t-transparent rounded-full" />
     </div>}>
       <WatchesContent />
     </Suspense>

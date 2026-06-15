@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
-/* ─── VEHA Jewels Design Tokens ─────────────────────────────────────────────── */
+/* ─── VEHA SILVER Design Tokens ─────────────────────────────────────────────── */
 :root {
-  --brand-brown: #745B38;
-  --brand-brown-mid: #8A775C;
-  --brand-brown-dark: #5C4528;
-  --brand-cream: #F6EDE1;
-  --brand-gold: #C3A070;
-  --brand-gold-light: #D4B896;
+  --brand-brown: #D06780;
+  --brand-brown-mid: #E591A4;
+  --brand-brown-dark: #9C3E55;
+  --brand-cream: #FDE9EC;
+  --brand-gold: #A1A8B8;
+  --brand-gold-light: #C9CFDC;
   --background: #FFFFFF;
   --surface-soft: #FAFAF8;
   --surface-cream: #FDF8F2;
@@ -86,7 +86,7 @@ h1, h2, h3, h4 {
 ::-webkit-scrollbar-thumb { background: var(--brand-gold); border-radius: 999px; }
 
 /* ─── Announcement Bar ───────────────────────────────────────────── */
-.announcement-gradient { background: linear-gradient(to right, #745B38, #8A775C, #745B38); }
+.announcement-gradient { background: linear-gradient(to right, #D06780, #E591A4, #D06780); }
 
 /* ─── Animations ─────────────────────────────────────────────────── */
 @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }

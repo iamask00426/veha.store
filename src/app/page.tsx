@@ -77,7 +77,7 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="relative z-10 p-6 text-white">
-                  <p className="text-xs font-semibold tracking-widest uppercase text-[#C3A070] mb-1">
+                  <p className="text-xs font-semibold tracking-widest uppercase text-[#A1A8B8] mb-1">
                     Featured Collection
                   </p>
                   <h3
@@ -87,7 +87,7 @@ export default function HomePage() {
                     Bridal Collection
                   </h3>
                   <p className="text-sm text-gray-300">Complete bridal sets & mangalsutra</p>
-                  <span className="inline-block mt-3 text-xs font-semibold bg-[#C3A070] text-[#1a1a1a] px-4 py-1.5 rounded-full group-hover:bg-white transition-colors">
+                  <span className="inline-block mt-3 text-xs font-semibold bg-[#A1A8B8] text-[#1a1a1a] px-4 py-1.5 rounded-full group-hover:bg-white transition-colors">
                     Explore Now →
                   </span>
                 </div>
@@ -105,7 +105,7 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="relative z-10 p-6 text-white">
-                  <p className="text-xs font-semibold tracking-widest uppercase text-[#C3A070] mb-1">
+                  <p className="text-xs font-semibold tracking-widest uppercase text-[#A1A8B8] mb-1">
                     Gift Store
                   </p>
                   <h3
@@ -115,7 +115,7 @@ export default function HomePage() {
                     Give the Gift of Luxury
                   </h3>
                   <p className="text-sm text-gray-300">Curated gifts under ₹5,000</p>
-                  <span className="inline-block mt-3 text-xs font-semibold bg-[#C3A070] text-[#1a1a1a] px-4 py-1.5 rounded-full group-hover:bg-white transition-colors">
+                  <span className="inline-block mt-3 text-xs font-semibold bg-[#A1A8B8] text-[#1a1a1a] px-4 py-1.5 rounded-full group-hover:bg-white transition-colors">
                     Shop Gifts →
                   </span>
                 </div>

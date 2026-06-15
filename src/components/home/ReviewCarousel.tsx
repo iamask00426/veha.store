@@ -63,7 +63,7 @@ export default function ReviewCarousel() {
                 key={i}
                 onClick={() => scrollTo(i)}
                 className={`h-2 rounded-full transition-all ${
-                  i === current ? "bg-[#C3A070] w-5" : "bg-gray-200 w-2"
+                  i === current ? "bg-[#A1A8B8] w-5" : "bg-gray-200 w-2"
                 }`}
               />
             ))}
@@ -100,7 +100,7 @@ export default function ReviewCarousel() {
               <p className="mt-2.5 text-sm text-gray-600 leading-relaxed line-clamp-3">
                 &ldquo;{review.text}&rdquo;
               </p>
-              <p className="mt-3 text-xs text-[#745B38] italic font-medium">
+              <p className="mt-3 text-xs text-[#D06780] italic font-medium">
                 Verified Purchase · {review.date}
               </p>
             </div>

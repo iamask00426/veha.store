@@ -19,14 +19,14 @@ export default function NewsletterStrip() {
   };
 
   return (
-    <section className="py-14 bg-gradient-to-r from-[#745B38] via-[#8A775C] to-[#745B38]">
+    <section className="py-14 bg-gradient-to-r from-[#D06780] via-[#E591A4] to-[#D06780]">
       <div className="max-w-2xl mx-auto px-4 text-center">
-        <span className="text-[#C3A070] text-2xl mb-3 block">✦</span>
+        <span className="text-[#A1A8B8] text-2xl mb-3 block">✦</span>
         <h2
           className="text-3xl font-bold text-white mb-2"
           style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
         >
-          Join the VEHA Jewels Family
+          Join the VEHA SILVER Family
         </h2>
         <p className="text-[#d4c4ac] text-sm mb-7">
           Get exclusive offers, new arrivals and style inspiration — straight to your inbox.
@@ -48,13 +48,13 @@ export default function NewsletterStrip() {
                   setError("");
                 }}
                 placeholder="Enter your email address"
-                className="w-full px-5 py-3 rounded-full bg-white text-gray-800 placeholder:text-gray-400 text-sm outline-none focus:ring-2 focus:ring-[#C3A070] transition-all"
+                className="w-full px-5 py-3 rounded-full bg-white text-gray-800 placeholder:text-gray-400 text-sm outline-none focus:ring-2 focus:ring-[#A1A8B8] transition-all"
               />
               {error && <p className="text-red-300 text-xs mt-1 text-left px-4">{error}</p>}
             </div>
             <button
               type="submit"
-              className="px-6 py-3 bg-[#C3A070] text-[#1a1a1a] font-semibold text-sm rounded-full hover:bg-[#d4b47a] transition-colors whitespace-nowrap flex-shrink-0"
+              className="px-6 py-3 bg-[#A1A8B8] text-[#1a1a1a] font-semibold text-sm rounded-full hover:bg-[#d4b47a] transition-colors whitespace-nowrap flex-shrink-0"
             >
               Subscribe
             </button>

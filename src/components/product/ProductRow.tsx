@@ -57,7 +57,7 @@ export default function ProductRow({ title, subtitle, products, viewAllLink }: P
             {viewAllLink && (
               <Link
                 href={viewAllLink}
-                className="text-sm font-semibold text-[#745B38] hover:text-[#5a4429] hover:underline transition-colors whitespace-nowrap"
+                className="text-sm font-semibold text-[#D06780] hover:text-[#9C3E55] hover:underline transition-colors whitespace-nowrap"
               >
                 View All →
               </Link>

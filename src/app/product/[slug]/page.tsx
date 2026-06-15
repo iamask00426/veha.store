@@ -35,7 +35,7 @@ function RelatedProducts({ current }: { current: Product }) {
           <Link
             key={p.id}
             href={`/product/${p.slug}`}
-            className="flex-shrink-0 w-44 bg-white rounded-2xl border border-gray-100 hover:border-[#C3A070] hover:shadow-md transition-all overflow-hidden group"
+            className="flex-shrink-0 w-44 bg-white rounded-2xl border border-gray-100 hover:border-[#A1A8B8] hover:shadow-md transition-all overflow-hidden group"
           >
             <div className="relative w-full h-44 bg-gray-50">
               <Image
@@ -52,13 +52,13 @@ function RelatedProducts({ current }: { current: Product }) {
               )}
             </div>
             <div className="p-3">
-              <p className="text-[10px] font-semibold text-[#C3A070] uppercase tracking-wide truncate">
+              <p className="text-[10px] font-semibold text-[#A1A8B8] uppercase tracking-wide truncate">
                 {p.brandSlug.replace(/-/g, " ")}
               </p>
-              <h3 className="text-xs font-semibold text-gray-900 line-clamp-2 mt-0.5 group-hover:text-[#745B38] transition-colors leading-snug">
+              <h3 className="text-xs font-semibold text-gray-900 line-clamp-2 mt-0.5 group-hover:text-[#D06780] transition-colors leading-snug">
                 {p.title}
               </h3>
-              <p className="text-sm font-bold text-[#745B38] mt-1">
+              <p className="text-sm font-bold text-[#D06780] mt-1">
                 {formatINR(p.price)}
               </p>
             </div>
@@ -85,13 +85,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
     <div className="min-h-screen bg-gray-50">
       {/* Breadcrumb */}
       <nav className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-2 text-xs text-gray-500">
-        <Link href="/" className="hover:text-[#745B38] transition-colors">
+        <Link href="/" className="hover:text-[#D06780] transition-colors">
           Home
         </Link>
         <span>/</span>
         <Link
           href={`/jewelry/${product.categorySlug}`}
-          className="capitalize hover:text-[#745B38] transition-colors"
+          className="capitalize hover:text-[#D06780] transition-colors"
         >
           {product.categorySlug.replace(/-/g, " ")}
         </Link>
@@ -113,8 +113,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <div className="p-5 lg:p-8 border-t lg:border-t-0 lg:border-l border-gray-100">
               {/* Brand + Category */}
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-bold text-[#C3A070] uppercase tracking-widest">
-                  VEHA Jewels
+                <span className="text-sm font-bold text-[#A1A8B8] uppercase tracking-widest">
+                  VEHA SILVER
                 </span>
                 <span className="text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded-full capitalize">
                   {product.categorySlug.replace(/-/g, " ")}
@@ -142,7 +142,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
               {/* Price */}
               <div className="flex items-center gap-3 mb-4 flex-wrap">
-                <span className="text-3xl font-extrabold text-[#745B38]">
+                <span className="text-3xl font-extrabold text-[#D06780]">
                   {formatINR(product.price)}
                 </span>
                 {product.mrp > product.price && (

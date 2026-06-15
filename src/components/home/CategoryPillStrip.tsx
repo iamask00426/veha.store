@@ -31,14 +31,14 @@ export default function CategoryPillStrip() {
               href={`/jewelry/${cat.slug}`}
               className="flex-shrink-0 snap-start flex flex-col items-center gap-2 group"
             >
-              <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-[#e4ddd2] group-hover:border-[#C3A070] transition-colors shadow-md">
+              <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-[#e4ddd2] group-hover:border-[#A1A8B8] transition-colors shadow-md">
                 <img
                   src={cat.localImg}
                   alt={cat.label}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
-              <span className="text-xs font-medium text-gray-700 group-hover:text-[#745B38] transition-colors text-center w-20 leading-tight">
+              <span className="text-xs font-medium text-gray-700 group-hover:text-[#D06780] transition-colors text-center w-20 leading-tight">
                 {cat.label}
               </span>
             </Link>
@@ -53,14 +53,14 @@ export default function CategoryPillStrip() {
               href={`/jewelry/${cat.slug}`}
               className="flex flex-col items-center gap-3 group"
             >
-              <div className="w-28 h-28 rounded-full overflow-hidden border-2 border-[#e4ddd2] group-hover:border-[#C3A070] transition-colors shadow-md group-hover:shadow-lg">
+              <div className="w-28 h-28 rounded-full overflow-hidden border-2 border-[#e4ddd2] group-hover:border-[#A1A8B8] transition-colors shadow-md group-hover:shadow-lg">
                 <img
                   src={cat.localImg}
                   alt={cat.label}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
-              <span className="text-sm font-medium text-gray-700 group-hover:text-[#745B38] transition-colors text-center">
+              <span className="text-sm font-medium text-gray-700 group-hover:text-[#D06780] transition-colors text-center">
                 {cat.label}
               </span>
             </Link>

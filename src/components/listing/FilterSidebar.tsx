@@ -98,7 +98,7 @@ export default function FilterSidebar({
         {hasFilters && (
           <button
             onClick={onClear}
-            className="flex items-center gap-1 text-xs font-medium text-[#745B38] hover:text-[#5a4428] transition-colors"
+            className="flex items-center gap-1 text-xs font-medium text-[#D06780] hover:text-[#9C3E55] transition-colors"
           >
             <X size={13} />
             Clear All
@@ -117,9 +117,9 @@ export default function FilterSidebar({
               type="checkbox"
               checked={selectedMetals.includes(metal.value)}
               onChange={() => toggleMetal(metal.value)}
-              className="w-4 h-4 rounded border-gray-300 accent-[#745B38] cursor-pointer"
+              className="w-4 h-4 rounded border-gray-300 accent-[#D06780] cursor-pointer"
             />
-            <span className="text-sm text-gray-700 group-hover:text-[#745B38] transition-colors">
+            <span className="text-sm text-gray-700 group-hover:text-[#D06780] transition-colors">
               {metal.label}
             </span>
           </label>
@@ -137,8 +137,8 @@ export default function FilterSidebar({
               }
               className={`w-full text-left px-3 py-2 rounded-lg text-sm border transition-all ${
                 priceRange === range.value
-                  ? "bg-[#745B38] text-white border-[#745B38] font-medium"
-                  : "bg-white text-gray-700 border-gray-200 hover:border-[#C3A070] hover:text-[#745B38]"
+                  ? "bg-[#D06780] text-white border-[#D06780] font-medium"
+                  : "bg-white text-gray-700 border-gray-200 hover:border-[#A1A8B8] hover:text-[#D06780]"
               }`}
             >
               {range.label}
@@ -162,9 +162,9 @@ export default function FilterSidebar({
               onChange={() =>
                 onRatingChange(selectedRating === r.value ? "" : r.value)
               }
-              className="w-4 h-4 accent-[#745B38] cursor-pointer"
+              className="w-4 h-4 accent-[#D06780] cursor-pointer"
             />
-            <span className="text-sm text-gray-700 group-hover:text-[#745B38] transition-colors">
+            <span className="text-sm text-gray-700 group-hover:text-[#D06780] transition-colors">
               {r.label}
             </span>
           </label>

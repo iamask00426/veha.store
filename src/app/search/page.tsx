@@ -24,7 +24,7 @@ function SearchResultCard({ product }: { product: Product }) {
   return (
     <Link
       href={`/product/${product.slug}`}
-      className="flex items-center gap-4 bg-white rounded-xl border border-gray-100 p-3 hover:border-[#C3A070] hover:shadow-md transition-all group"
+      className="flex items-center gap-4 bg-white rounded-xl border border-gray-100 p-3 hover:border-[#A1A8B8] hover:shadow-md transition-all group"
     >
       {/* Image */}
       <div className="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-gray-50 relative">
@@ -38,14 +38,14 @@ function SearchResultCard({ product }: { product: Product }) {
       </div>
       {/* Info */}
       <div className="flex-1 min-w-0">
-        <p className="text-[11px] font-semibold text-[#C3A070] uppercase tracking-wide">
-          VEHA Jewels
+        <p className="text-[11px] font-semibold text-[#A1A8B8] uppercase tracking-wide">
+          VEHA SILVER
         </p>
-        <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 leading-snug mt-0.5 group-hover:text-[#745B38] transition-colors">
+        <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 leading-snug mt-0.5 group-hover:text-[#D06780] transition-colors">
           {product.title}
         </h3>
         <div className="flex items-center gap-2 mt-1.5">
-          <span className="text-base font-bold text-[#745B38]">
+          <span className="text-base font-bold text-[#D06780]">
             {formatINR(product.price)}
           </span>
           {product.mrp > product.price && (
@@ -77,7 +77,7 @@ function PopularScroll() {
           <Link
             key={p.id}
             href={`/product/${p.slug}`}
-            className="flex-shrink-0 w-36 bg-white rounded-xl border border-gray-100 hover:border-[#C3A070] hover:shadow-md transition-all overflow-hidden group"
+            className="flex-shrink-0 w-36 bg-white rounded-xl border border-gray-100 hover:border-[#A1A8B8] hover:shadow-md transition-all overflow-hidden group"
           >
             <div className="relative w-full h-32 bg-gray-50">
               <Image
@@ -89,13 +89,13 @@ function PopularScroll() {
               />
             </div>
             <div className="p-2">
-              <p className="text-[10px] font-semibold text-[#C3A070] uppercase tracking-wide truncate">
-                VEHA Jewels
+              <p className="text-[10px] font-semibold text-[#A1A8B8] uppercase tracking-wide truncate">
+                VEHA SILVER
               </p>
               <p className="text-xs font-semibold text-gray-800 line-clamp-2 leading-tight mt-0.5">
                 {p.title}
               </p>
-              <p className="text-xs font-bold text-[#745B38] mt-1">
+              <p className="text-xs font-bold text-[#D06780] mt-1">
                 {formatINR(p.price)}
               </p>
             </div>
@@ -142,10 +142,10 @@ function SearchContent() {
       {/* Search header */}
       <div
         className="py-10 px-4"
-        style={{ background: "linear-gradient(135deg, #745B38 0%, #9a7a52 100%)" }}
+        style={{ background: "linear-gradient(135deg, #D06780 0%, #E591A4 100%)" }}
       >
         <div className="max-w-2xl mx-auto">
-          <h1 className="text-2xl font-bold text-[#F6EDE1] text-center mb-5">
+          <h1 className="text-2xl font-bold text-[#FDE9EC] text-center mb-5">
             Search Jewelry
           </h1>
           <div className="relative">
@@ -159,7 +159,7 @@ function SearchContent() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search rings, necklaces..."
-              className="w-full bg-white rounded-full py-3.5 pl-12 pr-5 text-gray-900 placeholder-gray-400 text-base shadow-lg focus:outline-none focus:ring-2 focus:ring-[#C3A070]"
+              className="w-full bg-white rounded-full py-3.5 pl-12 pr-5 text-gray-900 placeholder-gray-400 text-base shadow-lg focus:outline-none focus:ring-2 focus:ring-[#A1A8B8]"
             />
             {query && (
               <button
@@ -181,7 +181,7 @@ function SearchContent() {
             <p className="text-sm text-gray-600 mb-4">
               <span className="font-bold text-gray-900">{results.length}</span>{" "}
               result{results.length !== 1 ? "s" : ""} for{" "}
-              <span className="font-bold text-[#745B38]">&quot;{query}&quot;</span>
+              <span className="font-bold text-[#D06780]">&quot;{query}&quot;</span>
             </p>
 
             {results.length > 0 ? (
@@ -206,7 +206,7 @@ function SearchContent() {
                     <button
                       key={t}
                       onClick={() => setQuery(t)}
-                      className="px-4 py-2 rounded-full bg-white border border-[#C3A070] text-[#745B38] text-sm font-medium hover:bg-[#fdf7f0] transition-colors"
+                      className="px-4 py-2 rounded-full bg-white border border-[#A1A8B8] text-[#D06780] text-sm font-medium hover:bg-[#fdf7f0] transition-colors"
                     >
                       {t}
                     </button>
@@ -227,7 +227,7 @@ function SearchContent() {
                   <button
                     key={term}
                     onClick={() => setQuery(term)}
-                    className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border border-gray-200 text-gray-700 text-sm font-medium hover:border-[#C3A070] hover:text-[#745B38] transition-all shadow-sm"
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border border-gray-200 text-gray-700 text-sm font-medium hover:border-[#A1A8B8] hover:text-[#D06780] transition-all shadow-sm"
                   >
                     <Search size={13} className="text-gray-400" />
                     {term}
@@ -249,7 +249,7 @@ export default function SearchPage() {
     <Suspense
       fallback={
         <div className="min-h-screen flex items-center justify-center">
-          <div className="animate-spin w-8 h-8 border-4 border-[#745B38] border-t-transparent rounded-full" />
+          <div className="animate-spin w-8 h-8 border-4 border-[#D06780] border-t-transparent rounded-full" />
         </div>
       }
     >
