@@ -5,13 +5,11 @@ import Link from "next/link";
 import { Search, User, Heart, ShoppingBag, ChevronDown, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
-import { brands } from "@/lib/data/brands";
 import { categories } from "@/lib/data/categories";
 import SearchBar from "./SearchBar";
 import MobileNav from "./MobileNav";
 
 const topCategories = categories.filter((c) => !c.parent).slice(0, 12);
-const topBrands = brands.slice(0, 18);
 
 const metalOptions = [
   { label: "Gold", color: "bg-yellow-100 text-yellow-800", href: "/metal/gold" },
@@ -95,53 +93,6 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1 flex-1 justify-center">
-            {/* Brands */}
-            <div
-              className="relative"
-              onMouseEnter={() => openMenu("brands")}
-              onMouseLeave={closeMenu}
-            >
-              <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#745B38] rounded-lg hover:bg-gray-50 transition-colors">
-                Brands <ChevronDown size={14} className={activeMenu === "brands" ? "rotate-180" : ""} />
-              </button>
-              {activeMenu === "brands" && (
-                <div onMouseEnter={stayOpen} onMouseLeave={closeMenu}>
-                  <DropdownPanel>
-                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
-                      Shop by Brand
-                    </p>
-                    <div className="grid grid-cols-6 gap-2">
-                      {topBrands.map((brand) => (
-                        <Link
-                          key={brand.slug}
-                          href={`/brands/${brand.slug}`}
-                          className="flex flex-col items-center gap-1 p-2 rounded-xl hover:bg-gray-50 transition-colors group"
-                        >
-                          <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-100">
-                            <img
-                              src={brand.logo}
-                              alt={brand.name}
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                          <span className="text-[10px] text-gray-600 text-center leading-tight font-medium truncate w-full text-center group-hover:text-[#745B38]">
-                            {brand.name.split(" ")[0]}
-                          </span>
-                        </Link>
-                      ))}
-                    </div>
-                    <div className="mt-3 pt-3 border-t">
-                      <Link
-                        href="/brands"
-                        className="text-xs font-semibold text-[#745B38] hover:underline"
-                      >
-                        View All 120+ Brands →
-                      </Link>
-                    </div>
-                  </DropdownPanel>
-                </div>
-              )}
-            </div>
 
             {/* Categories */}
             <div

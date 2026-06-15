@@ -4,7 +4,7 @@ import { Suspense, useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { SlidersHorizontal, X, Watch } from "lucide-react";
-import { products, brands } from "@/lib/data";
+import { products } from "@/lib/data";
 import type { Product } from "@/types";
 import { formatINR, getDiscountLabel } from "@/lib/utils";
 import FilterChips from "@/components/listing/FilterChips";
@@ -69,7 +69,7 @@ function WatchCard({ product }: { product: Product }) {
       </div>
       <div className="p-3">
         <p className="text-[11px] font-semibold text-[#C3A070] uppercase tracking-wide truncate">
-          {product.brandSlug.replace(/-/g, " ")}
+          VEHA Jewels
         </p>
         <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 mt-0.5 group-hover:text-[#745B38] transition-colors leading-snug">
           {product.title}
@@ -87,11 +87,6 @@ function WatchCard({ product }: { product: Product }) {
 }
 
 function WatchesContent() {
-  const watchBrands = brands.filter((b) =>
-    products.some((p) => p.categorySlug === "watches" && p.brandSlug === b.slug)
-  );
-
-  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState("");
   const [selectedGender, setSelectedGender] = useState("");
   const [sort, setSort] = useState<SortOption>("popularity");
@@ -105,30 +100,26 @@ function WatchesContent() {
 
   const filtered = useMemo(() => {
     return baseProducts.filter((p) => {
-      if (selectedBrands.length > 0 && !selectedBrands.includes(p.brandSlug)) return false;
       if (priceRange && !watchPriceInRange(p.price, priceRange)) return false;
       return true;
     });
-  }, [baseProducts, selectedBrands, priceRange]);
+  }, [baseProducts, priceRange]);
 
   const sorted = useMemo(() => sortProducts(filtered, sort), [filtered, sort]);
   const totalPages = Math.ceil(sorted.length / PAGE_SIZE);
   const paginated = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   const activeFilters = {
-    brands: selectedBrands,
     priceRange,
   };
 
   function clearAll() {
-    setSelectedBrands([]);
     setPriceRange("");
     setSelectedGender("");
     setPage(1);
   }
 
   function handleRemove(key: string, value: string) {
-    if (key === "brands") setSelectedBrands((b) => b.filter((x) => x !== value));
     if (key === "priceRange") setPriceRange("");
     setPage(1);
   }
@@ -141,30 +132,6 @@ function WatchesContent() {
           Clear All
         </button>
       </div>
-
-      {/* Brand filter */}
-      {watchBrands.length > 0 && (
-        <div>
-          <h3 className="text-xs font-bold uppercase tracking-wide text-gray-600 mb-2">Brand</h3>
-          <div className="space-y-2 max-h-40 overflow-y-auto">
-            {watchBrands.map((b) => (
-              <label key={b.slug} className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={selectedBrands.includes(b.slug)}
-                  onChange={() =>
-                    setSelectedBrands((prev) =>
-                      prev.includes(b.slug) ? prev.filter((x) => x !== b.slug) : [...prev, b.slug]
-                    )
-                  }
-                  className="w-4 h-4 accent-[#745B38]"
-                />
-                <span className="text-sm text-gray-700">{b.name}</span>
-              </label>
-            ))}
-          </div>
-        </div>
-      )}
 
       {/* Price range */}
       <div>

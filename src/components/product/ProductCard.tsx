@@ -116,7 +116,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className="p-3 flex flex-col flex-1">
         <Link href={`/product/${product.slug}`} className="flex-1">
           <p className="text-[10px] font-semibold uppercase tracking-wider text-[#8A775C] mb-1">
-            {product.brandSlug.replace(/-/g, " ")}
+            VEHA Jewels
           </p>
           <h3 className="text-sm font-medium text-gray-900 line-clamp-2 leading-snug mb-1.5">
             {product.title}

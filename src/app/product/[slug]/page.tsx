@@ -113,12 +113,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <div className="p-5 lg:p-8 border-t lg:border-t-0 lg:border-l border-gray-100">
               {/* Brand + Category */}
               <div className="flex items-center justify-between mb-2">
-                <Link
-                  href={`/brands/${product.brandSlug}`}
-                  className="text-sm font-bold text-[#C3A070] uppercase tracking-widest hover:text-[#745B38] transition-colors"
-                >
-                  {product.brandSlug.replace(/-/g, " ")}
-                </Link>
+                <span className="text-sm font-bold text-[#C3A070] uppercase tracking-widest">
+                  VEHA Jewels
+                </span>
                 <span className="text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded-full capitalize">
                   {product.categorySlug.replace(/-/g, " ")}
                 </span>

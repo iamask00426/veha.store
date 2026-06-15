@@ -110,7 +110,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
                 </div>
                 <div className="p-3">
                   <p className="text-[11px] font-semibold text-[#C3A070] uppercase tracking-wide truncate">
-                    {product.brandSlug.replace(/-/g, " ")}
+                    VEHA Jewels
                   </p>
                   <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 mt-0.5 group-hover:text-[#745B38] transition-colors leading-snug">
                     {product.title}

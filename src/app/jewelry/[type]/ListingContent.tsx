@@ -86,7 +86,7 @@ function ProductGridCard({ product }: { product: Product }) {
       </div>
       <div className="p-3">
         <p className="text-[11px] font-semibold text-[#C3A070] uppercase tracking-wide truncate">
-          {product.brandSlug.replace(/-/g, " ")}
+          VEHA Jewels
         </p>
         <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 mt-0.5 group-hover:text-[#745B38] transition-colors leading-snug">
           {product.title}
@@ -116,7 +116,6 @@ export default function ListingContent({ type }: { type: string }) {
     label: type.charAt(0).toUpperCase() + type.slice(1),
   };
 
-  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [selectedMetals, setSelectedMetals] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState("");
   const [selectedRating, setSelectedRating] = useState("");
@@ -134,13 +133,12 @@ export default function ListingContent({ type }: { type: string }) {
 
   const filtered = useMemo(() => {
     return baseProducts.filter((p) => {
-      if (selectedBrands.length > 0 && !selectedBrands.includes(p.brandSlug)) return false;
       if (selectedMetals.length > 0 && !selectedMetals.includes(p.metal)) return false;
       if (priceRange && !priceInRange(p.price, priceRange)) return false;
       if (selectedRating && p.rating < parseFloat(selectedRating)) return false;
       return true;
     });
-  }, [baseProducts, selectedBrands, selectedMetals, priceRange, selectedRating]);
+  }, [baseProducts, selectedMetals, priceRange, selectedRating]);
 
   const sorted = useMemo(() => sortProducts(filtered, sort), [filtered, sort]);
 
@@ -148,7 +146,6 @@ export default function ListingContent({ type }: { type: string }) {
   const paginated = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   function clearAll() {
-    setSelectedBrands([]);
     setSelectedMetals([]);
     setPriceRange("");
     setSelectedRating("");
@@ -156,7 +153,6 @@ export default function ListingContent({ type }: { type: string }) {
   }
 
   function handleRemoveFilter(key: string, value: string) {
-    if (key === "brands") setSelectedBrands((b) => b.filter((x) => x !== value));
     if (key === "metals") setSelectedMetals((m) => m.filter((x) => x !== value));
     if (key === "priceRange") setPriceRange("");
     if (key === "rating") setSelectedRating("");
@@ -196,11 +192,9 @@ export default function ListingContent({ type }: { type: string }) {
           <div className="hidden lg:block w-64 flex-shrink-0">
             <div className="sticky top-4">
               <FilterSidebar
-                selectedBrands={selectedBrands}
                 selectedMetals={selectedMetals}
                 priceRange={priceRange}
                 selectedRating={selectedRating}
-                onBrandsChange={(v) => { setSelectedBrands(v); setPage(1); }}
                 onMetalsChange={(v) => { setSelectedMetals(v); setPage(1); }}
                 onPriceChange={(v) => { setPriceRange(v); setPage(1); }}
                 onRatingChange={(v) => { setSelectedRating(v); setPage(1); }}
@@ -214,7 +208,7 @@ export default function ListingContent({ type }: { type: string }) {
             {/* Sort + filter chips row (desktop) */}
             <div className="hidden lg:flex items-center justify-between mb-3">
               <FilterChips
-                filters={{ brands: selectedBrands, metals: selectedMetals, priceRange, rating: selectedRating }}
+                filters={{ metals: selectedMetals, priceRange, rating: selectedRating }}
                 onRemove={handleRemoveFilter}
                 onClearAll={clearAll}
               />
@@ -224,7 +218,7 @@ export default function ListingContent({ type }: { type: string }) {
             {/* Mobile filter chips */}
             <div className="lg:hidden mb-3">
               <FilterChips
-                filters={{ brands: selectedBrands, metals: selectedMetals, priceRange, rating: selectedRating }}
+                filters={{ metals: selectedMetals, priceRange, rating: selectedRating }}
                 onRemove={handleRemoveFilter}
                 onClearAll={clearAll}
               />
@@ -295,11 +289,9 @@ export default function ListingContent({ type }: { type: string }) {
               </button>
             </div>
             <FilterSidebar
-              selectedBrands={selectedBrands}
               selectedMetals={selectedMetals}
               priceRange={priceRange}
               selectedRating={selectedRating}
-              onBrandsChange={(v) => { setSelectedBrands(v); setPage(1); }}
               onMetalsChange={(v) => { setSelectedMetals(v); setPage(1); }}
               onPriceChange={(v) => { setPriceRange(v); setPage(1); }}
               onRatingChange={(v) => { setSelectedRating(v); setPage(1); }}

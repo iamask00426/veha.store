@@ -2,21 +2,16 @@
 
 import { useState } from "react";
 import { ChevronDown, ChevronUp, X } from "lucide-react";
-import { brands } from "@/lib/data";
-
 export interface FilterState {
-  brands: string[];
   metals: string[];
   priceRange: string;
   rating: string;
 }
 
 interface FilterSidebarProps {
-  selectedBrands: string[];
   selectedMetals: string[];
   priceRange: string;
   selectedRating: string;
-  onBrandsChange: (brands: string[]) => void;
   onMetalsChange: (metals: string[]) => void;
   onPriceChange: (range: string) => void;
   onRatingChange: (rating: string) => void;
@@ -74,30 +69,18 @@ function Section({
 }
 
 export default function FilterSidebar({
-  selectedBrands,
   selectedMetals,
   priceRange,
   selectedRating,
-  onBrandsChange,
   onMetalsChange,
   onPriceChange,
   onRatingChange,
   onClear,
 }: FilterSidebarProps) {
-  const topBrands = brands.slice(0, 20);
   const hasFilters =
-    selectedBrands.length > 0 ||
     selectedMetals.length > 0 ||
     priceRange !== "" ||
     selectedRating !== "";
-
-  function toggleBrand(slug: string) {
-    if (selectedBrands.includes(slug)) {
-      onBrandsChange(selectedBrands.filter((b) => b !== slug));
-    } else {
-      onBrandsChange([...selectedBrands, slug]);
-    }
-  }
 
   function toggleMetal(value: string) {
     if (selectedMetals.includes(value)) {
@@ -122,28 +105,6 @@ export default function FilterSidebar({
           </button>
         )}
       </div>
-
-      {/* Brands */}
-      <Section title="Brand">
-        <div className="max-h-52 overflow-y-auto space-y-2 pr-1 scrollbar-thin">
-          {topBrands.map((brand) => (
-            <label
-              key={brand.slug}
-              className="flex items-center gap-2.5 cursor-pointer group"
-            >
-              <input
-                type="checkbox"
-                checked={selectedBrands.includes(brand.slug)}
-                onChange={() => toggleBrand(brand.slug)}
-                className="w-4 h-4 rounded border-gray-300 accent-[#745B38] cursor-pointer"
-              />
-              <span className="text-sm text-gray-700 group-hover:text-[#745B38] transition-colors">
-                {brand.name}
-              </span>
-            </label>
-          ))}
-        </div>
-      </Section>
 
       {/* Metal */}
       <Section title="Metal">

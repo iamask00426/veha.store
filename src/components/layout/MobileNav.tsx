@@ -31,17 +31,6 @@ const navSections = [
     ],
   },
   {
-    title: "Brands",
-    items: [
-      { label: "Tanishq", href: "/brands/tanishq" },
-      { label: "Malabar Gold", href: "/brands/malabar-gold" },
-      { label: "BlueStone", href: "/brands/bluestone" },
-      { label: "CaratLane", href: "/brands/caratlane" },
-      { label: "GIVA", href: "/brands/giva" },
-      { label: "All Brands", href: "/brands" },
-    ],
-  },
-  {
     title: "Gifts",
     items: [
       { label: "Under ₹999", href: "/jewelry/budget" },
@@ -135,7 +124,7 @@ export default function MobileNav() {
               className="flex items-center gap-2 w-full bg-gray-100 rounded-full px-4 py-2.5 text-sm text-gray-400"
             >
               <Search size={16} />
-              <span>Search jewelry, brands...</span>
+              <span>Search jewelry, watches...</span>
             </button>
           )}
         </div>

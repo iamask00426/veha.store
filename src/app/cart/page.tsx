@@ -136,7 +136,7 @@ export default function CartPage() {
                 {/* Info */}
                 <div className="flex-1 min-w-0">
                   <p className="text-[11px] font-semibold text-[#C3A070] uppercase tracking-wide">
-                    {item.brandSlug.replace(/-/g, " ")}
+                    VEHA Jewels
                   </p>
                   <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 leading-snug mt-0.5">
                     {item.title}

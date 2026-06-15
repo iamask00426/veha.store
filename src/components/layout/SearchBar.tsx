@@ -53,7 +53,6 @@ export default function SearchBar({ onClose, autoFocus }: SearchBarProps) {
       .filter(
         (p) =>
           p.title.toLowerCase().includes(q) ||
-          p.brandSlug.toLowerCase().includes(q) ||
           p.categorySlug.toLowerCase().includes(q) ||
           p.material.toLowerCase().includes(q)
       )
@@ -109,7 +108,7 @@ export default function SearchBar({ onClose, autoFocus }: SearchBarProps) {
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-900 truncate">{product.title}</p>
                 <p className="text-xs text-gray-400 truncate">
-                  {product.brandSlug.replace(/-/g, " ")} · ₹{product.price.toLocaleString()}
+                  VEHA Jewels · ₹{product.price.toLocaleString()}
                 </p>
               </div>
               <Search size={14} className="text-gray-300 flex-shrink-0" />

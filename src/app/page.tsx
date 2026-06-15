@@ -3,7 +3,6 @@ import type { Product } from "@/types";
 
 import HeroBannerCarousel from "@/components/home/HeroBannerCarousel";
 import CategoryPillStrip from "@/components/home/CategoryPillStrip";
-import BrandLogoStrip from "@/components/home/BrandLogoStrip";
 import TrustBadges from "@/components/home/TrustBadges";
 import ReviewCarousel from "@/components/home/ReviewCarousel";
 import NewsletterStrip from "@/components/home/NewsletterStrip";
@@ -132,9 +131,6 @@ export default function HomePage() {
           products={budget}
           viewAllLink="/jewelry/budget"
         />
-
-        {/* Brand Logo Strip */}
-        <BrandLogoStrip />
 
         {/* Trust Badges */}
         <TrustBadges />

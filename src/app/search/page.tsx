@@ -39,7 +39,7 @@ function SearchResultCard({ product }: { product: Product }) {
       {/* Info */}
       <div className="flex-1 min-w-0">
         <p className="text-[11px] font-semibold text-[#C3A070] uppercase tracking-wide">
-          {product.brandSlug.replace(/-/g, " ")}
+          VEHA Jewels
         </p>
         <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 leading-snug mt-0.5 group-hover:text-[#745B38] transition-colors">
           {product.title}
@@ -90,7 +90,7 @@ function PopularScroll() {
             </div>
             <div className="p-2">
               <p className="text-[10px] font-semibold text-[#C3A070] uppercase tracking-wide truncate">
-                {p.brandSlug.replace(/-/g, " ")}
+                VEHA Jewels
               </p>
               <p className="text-xs font-semibold text-gray-800 line-clamp-2 leading-tight mt-0.5">
                 {p.title}
@@ -130,7 +130,6 @@ function SearchContent() {
       ? products.filter(
           (p) =>
             p.title.toLowerCase().includes(query.toLowerCase()) ||
-            p.brandSlug.toLowerCase().includes(query.toLowerCase()) ||
             p.categorySlug.toLowerCase().includes(query.toLowerCase()) ||
             p.metal.toLowerCase().includes(query.toLowerCase())
         )
@@ -159,7 +158,7 @@ function SearchContent() {
               autoFocus
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search rings, necklaces, brands..."
+              placeholder="Search rings, necklaces..."
               className="w-full bg-white rounded-full py-3.5 pl-12 pr-5 text-gray-900 placeholder-gray-400 text-base shadow-lg focus:outline-none focus:ring-2 focus:ring-[#C3A070]"
             />
             {query && (
