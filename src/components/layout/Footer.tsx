@@ -47,7 +47,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-sm text-[#9c9087] leading-relaxed mb-5">
-              Discover extraordinary jewelry from 120+ curated brands. Your destination for
+              Discover extraordinary handcrafted jewelry. Your destination for
               authentic, certified fine jewelry and luxury timepieces.
             </p>
             <div className="flex items-center gap-3">

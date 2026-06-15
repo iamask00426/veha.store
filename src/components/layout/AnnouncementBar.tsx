@@ -7,7 +7,7 @@ const messages = [
   "✨ Free Shipping on all orders above ₹499",
   "💎 Certification on gold & silver jewelry",
   "🔄 Easy returns with hassle free refunds",
-  "✅ 100% Authentic products from top brands",
+  "✅ 100% Authentic & Certified Products",
 ];
 
 export default function AnnouncementBar() {

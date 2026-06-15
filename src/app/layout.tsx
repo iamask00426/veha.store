@@ -19,14 +19,14 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "VEHA Jewels — Premium Multi-Brand Jewellery & Watch Marketplace",
+  title: "VEHA Jewels — Premium Handcrafted Jewellery & Watch Marketplace",
   description:
-    "Shop from 120+ trusted jewellery and watch brands. Discover curated collections of rings, necklaces, earrings, bangles, mangalsutra, and luxury timepieces. Free shipping across India.",
+    "Shop premium handcrafted jewellery and exquisite watches. Discover curated collections of rings, necklaces, earrings, bangles, mangalsutra, and luxury timepieces. Free shipping across India.",
   keywords: ["jewellery", "jewelry", "watches", "gold", "diamond", "silver", "India", "online shopping"],
   authors: [{ name: "VEHA Jewels" }],
   openGraph: {
     title: "VEHA Jewels — Premium Jewellery & Watch Marketplace",
-    description: "Shop from 120+ trusted jewellery and watch brands across India.",
+    description: "Shop premium handcrafted jewellery and exquisite watches across India.",
     type: "website",
     locale: "en_IN",
   },

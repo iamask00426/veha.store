@@ -31,7 +31,7 @@ const slides = [
     id: 3,
     eyebrow: "Watch Sale",
     heading: "Time for an Upgrade",
-    subtext: "Premium watches up to 40% off from top Swiss & Indian brands",
+    subtext: "Premium watches up to 40% off — exquisite designs & quality timepieces",
     cta1: { label: "Shop Watches", href: "/shop/watches" },
     cta2: { label: "View All Deals", href: "/sale" },
     bg: "from-[#1a1a2e] via-[#16213e] to-[#0f3460]",

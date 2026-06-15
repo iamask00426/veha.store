@@ -3,7 +3,6 @@
 import { X } from "lucide-react";
 
 interface ActiveFilters {
-  brands?: string[];
   metals?: string[];
   priceRange?: string;
   rating?: string;
@@ -34,10 +33,6 @@ export default function FilterChips({
   onClearAll,
 }: FilterChipsProps) {
   const chips: { key: string; value: string; label: string }[] = [];
-
-  filters.brands?.forEach((slug) =>
-    chips.push({ key: "brands", value: slug, label: slug.replace(/-/g, " ") })
-  );
 
   filters.metals?.forEach((metal) =>
     chips.push({

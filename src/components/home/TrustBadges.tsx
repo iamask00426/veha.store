@@ -9,7 +9,7 @@ const badges = [
   {
     icon: Shield,
     title: "100% Authentic",
-    subtitle: "Directly sourced from brands",
+    subtitle: "100% quality assurance",
   },
   {
     icon: Award,
