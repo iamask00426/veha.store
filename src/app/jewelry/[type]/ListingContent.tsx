@@ -62,7 +62,7 @@ function sortProducts(arr: Product[], sort: SortOption): Product[] {
 function ProductGridCard({ product }: { product: Product }) {
   return (
     <Link
-      href={`/product/${product.slug}`}
+      href={`/product?slug=${product.slug}`}
       className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:border-[#A1A8B8] hover:shadow-lg transition-all duration-300"
     >
       <div className="relative aspect-square overflow-hidden bg-gray-50">
@@ -126,6 +126,7 @@ export default function ListingContent({ type }: { type: string }) {
 
   const baseProducts = useMemo(() => {
     return products.filter((p) => {
+      if (p.isActive === false) return false;
       if (typeInfo.categorySlug && p.categorySlug !== typeInfo.categorySlug) return false;
       if (typeInfo.metal && p.metal !== typeInfo.metal) return false;
       return true;

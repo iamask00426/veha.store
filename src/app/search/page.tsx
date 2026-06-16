@@ -23,7 +23,7 @@ const TRENDING = [
 function SearchResultCard({ product }: { product: Product }) {
   return (
     <Link
-      href={`/product/${product.slug}`}
+      href={`/product?slug=${product.slug}`}
       className="flex items-center gap-4 bg-white rounded-xl border border-gray-100 p-3 hover:border-[#A1A8B8] hover:shadow-md transition-all group"
     >
       {/* Image */}
@@ -67,7 +67,7 @@ function SearchResultCard({ product }: { product: Product }) {
 
 function PopularScroll() {
   const { products } = useStore();
-  const popular = products.slice(0, 10);
+  const popular = products.filter(p => p.isActive !== false).slice(0, 10);
   return (
     <div className="mt-8">
       <h2 className="text-base font-bold text-gray-800 mb-3">
@@ -77,7 +77,7 @@ function PopularScroll() {
         {popular.map((p) => (
           <Link
             key={p.id}
-            href={`/product/${p.slug}`}
+            href={`/product?slug=${p.slug}`}
             className="flex-shrink-0 w-36 bg-white rounded-xl border border-gray-100 hover:border-[#A1A8B8] hover:shadow-md transition-all overflow-hidden group"
           >
             <div className="relative w-full h-32 bg-gray-50">
@@ -131,9 +131,10 @@ function SearchContent() {
     query.trim().length > 0
       ? products.filter(
           (p) =>
-            p.title.toLowerCase().includes(query.toLowerCase()) ||
-            p.categorySlug.toLowerCase().includes(query.toLowerCase()) ||
-            p.metal.toLowerCase().includes(query.toLowerCase())
+            p.isActive !== false &&
+            (p.title.toLowerCase().includes(query.toLowerCase()) ||
+             p.categorySlug.toLowerCase().includes(query.toLowerCase()) ||
+             p.metal.toLowerCase().includes(query.toLowerCase()))
         )
       : [];
 

@@ -37,6 +37,7 @@ export interface Product {
   inStock: boolean;
   stock?: number;
   description?: string;
+  isActive?: boolean;
 }
 
 export interface Brand {

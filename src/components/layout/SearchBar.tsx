@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { products } from "@/lib/data/products";
+import { useStore } from "@/context";
 import type { Product } from "@/types";
 
 const placeholders = [
@@ -26,6 +26,7 @@ export default function SearchBar({ onClose, autoFocus }: SearchBarProps) {
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
+  const { products } = useStore();
 
   // Cycle placeholder
   useEffect(() => {
@@ -52,13 +53,14 @@ export default function SearchBar({ onClose, autoFocus }: SearchBarProps) {
     const filtered = products
       .filter(
         (p) =>
-          p.title.toLowerCase().includes(q) ||
-          p.categorySlug.toLowerCase().includes(q) ||
-          p.material.toLowerCase().includes(q)
+          p.isActive !== false &&
+          (p.title.toLowerCase().includes(q) ||
+           p.categorySlug.toLowerCase().includes(q) ||
+           p.material.toLowerCase().includes(q))
       )
       .slice(0, 6);
     setResults(filtered);
-  }, [query]);
+  }, [query, products]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -69,7 +71,7 @@ export default function SearchBar({ onClose, autoFocus }: SearchBarProps) {
   };
 
   const handleResultClick = (slug: string) => {
-    router.push(`/product/${slug}`);
+    router.push(`/product?slug=${slug}`);
     onClose?.();
   };
 

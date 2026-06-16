@@ -19,6 +19,7 @@ import {
   RefreshCw, 
   Truck, 
   Eye, 
+  EyeOff,
   AlertCircle,
   TrendingUp,
   Coins,
@@ -60,6 +61,8 @@ export default function AdminDashboard() {
   // Filter States
   const [productSearch, setProductSearch] = useState("");
   const [productCategory, setProductCategory] = useState("all");
+  const [productStatusFilter, setProductStatusFilter] = useState<"all" | "active" | "inactive">("all");
+  const [productBadgeFilter, setProductBadgeFilter] = useState<"all" | string>("all");
   const [orderSearch, setOrderSearch] = useState("");
   const [orderStatusFilter, setOrderStatusFilter] = useState("all");
   const [customerSearch, setCustomerSearch] = useState("");
@@ -94,7 +97,8 @@ export default function AdminDashboard() {
     inStock: true,
     stock: 10,
     description: "",
-    subcategory: "Silver Rings"
+    subcategory: "Silver Rings",
+    isActive: true
   });
 
   const [isCouponModalOpen, setIsCouponModalOpen] = useState(false);
@@ -228,9 +232,13 @@ export default function AdminDashboard() {
     return products.filter((p) => {
       const matchSearch = p.title.toLowerCase().includes(productSearch.toLowerCase()) || p.id.includes(productSearch);
       const matchCategory = productCategory === "all" || p.categorySlug === productCategory;
-      return matchSearch && matchCategory;
+      const matchStatus = productStatusFilter === "all" ||
+        (productStatusFilter === "active" && p.isActive !== false) ||
+        (productStatusFilter === "inactive" && p.isActive === false);
+      const matchBadge = productBadgeFilter === "all" || (p.badges && p.badges.includes(productBadgeFilter as any));
+      return matchSearch && matchCategory && matchStatus && matchBadge;
     });
-  }, [products, productSearch, productCategory]);
+  }, [products, productSearch, productCategory, productStatusFilter, productBadgeFilter]);
 
   // Filtered Orders
   const filteredOrders = useMemo(() => {
@@ -299,13 +307,14 @@ export default function AdminDashboard() {
       mrp: p.mrp,
       discountPct: p.discountPct,
       images: p.images,
-      badges: p.badges,
+      badges: p.badges ?? [],
       virtualTryOn: p.virtualTryOn,
       sameDayDelivery: p.sameDayDelivery,
       inStock: p.inStock,
       stock: p.stock !== undefined ? p.stock : (p.inStock ? 10 : 0),
       description: p.description ?? "",
-      subcategory: p.subcategory
+      subcategory: p.subcategory,
+      isActive: p.isActive !== false
     });
     setIsProductModalOpen(true);
   };
@@ -326,14 +335,15 @@ export default function AdminDashboard() {
       price: 0,
       mrp: 0,
       discountPct: 0,
-      images: [],
-      badges: [],
+      images: [] as string[],
+      badges: [] as BadgeType[],
       virtualTryOn: false,
       sameDayDelivery: false,
       inStock: true,
       stock: 10,
       description: "",
-      subcategory: "Silver Rings"
+      subcategory: "Silver Rings",
+      isActive: true
     });
   };
 
@@ -756,12 +766,33 @@ export default function AdminDashboard() {
               <select
                 value={productCategory}
                 onChange={(e) => setProductCategory(e.target.value)}
-                className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-semibold text-gray-700 outline-none focus:ring-2 focus:ring-[#D06780]/20 transition-all capitalize"
+                className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-semibold text-gray-700 outline-none focus:ring-2 focus:ring-[#D06780]/20 transition-all capitalize cursor-pointer"
               >
                 <option value="all">All Categories</option>
                 {categoriesList.map((c) => (
                   <option key={c.slug} value={c.slug}>{c.name}</option>
                 ))}
+              </select>
+              <select
+                value={productStatusFilter}
+                onChange={(e) => setProductStatusFilter(e.target.value as any)}
+                className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-semibold text-gray-700 outline-none focus:ring-2 focus:ring-[#D06780]/20 transition-all cursor-pointer"
+              >
+                <option value="all">All Statuses</option>
+                <option value="active">Active Only</option>
+                <option value="inactive">Inactive Only</option>
+              </select>
+              <select
+                value={productBadgeFilter}
+                onChange={(e) => setProductBadgeFilter(e.target.value)}
+                className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-semibold text-gray-700 outline-none focus:ring-2 focus:ring-[#D06780]/20 transition-all cursor-pointer"
+              >
+                <option value="all">All Badges</option>
+                <option value="New">New Badge</option>
+                <option value="Trending">Trending Badge</option>
+                <option value="Bestseller">Bestseller Badge</option>
+                <option value="Sale">Sale Badge</option>
+                <option value="Exclusive">Exclusive Badge</option>
               </select>
             </div>
 
@@ -777,6 +808,7 @@ export default function AdminDashboard() {
                       <th className="p-4">Metal / Material</th>
                       <th className="p-4">Price / MRP</th>
                       <th className="p-4">Inventory Stock</th>
+                      <th className="p-4">Status</th>
                       <th className="p-4 text-center">Actions</th>
                     </tr>
                   </thead>
@@ -821,8 +853,34 @@ export default function AdminDashboard() {
                               <span className="text-xs font-semibold text-gray-500">Qty: {p.stock ?? 0}</span>
                             </div>
                           </td>
+                          <td className="p-4">
+                            <span className={`inline-block text-[10px] font-bold px-2 py-0.5 rounded-full uppercase ${
+                              p.isActive !== false
+                                ? "bg-green-50 text-green-600 border border-green-200"
+                                : "bg-gray-100 text-gray-500 border border-gray-200"
+                            }`}>
+                              {p.isActive !== false ? "Active" : "Inactive"}
+                            </span>
+                          </td>
                           <td className="p-4 text-center">
                             <div className="flex justify-center items-center gap-2">
+                              <button
+                                onClick={() => {
+                                  updateProduct(p.id, { isActive: p.isActive === false });
+                                  showToast(
+                                    `Product ${p.isActive === false ? "activated" : "deactivated"} successfully`,
+                                    "success"
+                                  );
+                                }}
+                                className={`p-2 rounded-xl transition-all ${
+                                  p.isActive !== false
+                                    ? "text-green-500 hover:bg-green-50"
+                                    : "text-gray-400 hover:bg-gray-100 hover:text-gray-600"
+                                }`}
+                                title={p.isActive !== false ? "Deactivate Product" : "Activate Product"}
+                              >
+                                {p.isActive !== false ? <Eye size={16} /> : <EyeOff size={16} />}
+                              </button>
                               <button
                                 onClick={() => startEditProduct(p)}
                                 className="p-2 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-xl transition-all"
@@ -1334,26 +1392,53 @@ export default function AdminDashboard() {
                   />
                 </div>
 
-                <div className="sm:col-span-2 space-y-2 pt-2">
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={productForm.virtualTryOn}
-                      onChange={(e) => setProductForm({ ...productForm, virtualTryOn: e.target.checked })}
-                      className="accent-[#D06780] h-4 w-4"
-                    />
-                    <span className="font-semibold text-gray-700">Enable Virtual Try-On Badge</span>
-                  </label>
-
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={productForm.sameDayDelivery}
-                      onChange={(e) => setProductForm({ ...productForm, sameDayDelivery: e.target.checked })}
-                      className="accent-[#D06780] h-4 w-4"
-                    />
-                    <span className="font-semibold text-gray-700">Enable Same Day Delivery</span>
-                  </label>
+                <div className="sm:col-span-2 pt-2">
+                  <label className="block text-xs font-bold text-gray-500 uppercase mb-2">Product Badges</label>
+                  <div className="grid grid-cols-2 gap-2">
+                    {["New", "Trending", "Bestseller", "Sale", "Exclusive"].map((badge) => (
+                      <label key={badge} className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={productForm.badges.includes(badge as BadgeType)}
+                          onChange={(e) => {
+                            const nextBadges = e.target.checked
+                              ? [...productForm.badges, badge as BadgeType]
+                              : productForm.badges.filter(b => b !== badge);
+                            setProductForm({ ...productForm, badges: nextBadges });
+                          }}
+                          className="accent-[#D06780] h-4 w-4"
+                        />
+                        <span className="font-semibold text-gray-700">{badge} Badge</span>
+                      </label>
+                    ))}
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={productForm.virtualTryOn}
+                        onChange={(e) => setProductForm({ ...productForm, virtualTryOn: e.target.checked })}
+                        className="accent-[#D06780] h-4 w-4"
+                      />
+                      <span className="font-semibold text-gray-700">Virtual Try-On</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={productForm.sameDayDelivery}
+                        onChange={(e) => setProductForm({ ...productForm, sameDayDelivery: e.target.checked })}
+                        className="accent-[#D06780] h-4 w-4"
+                      />
+                      <span className="font-semibold text-gray-700">Same Day Delivery</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer border border-[#D06780]/20 bg-[#FDE9EC]/20 rounded-lg p-1 px-2">
+                      <input
+                        type="checkbox"
+                        checked={productForm.isActive}
+                        onChange={(e) => setProductForm({ ...productForm, isActive: e.target.checked })}
+                        className="accent-[#D06780] h-4 w-4"
+                      />
+                      <span className="font-bold text-[#D06780]">Active on Storefront</span>
+                    </label>
+                  </div>
                 </div>
 
                 <div className="sm:col-span-2">

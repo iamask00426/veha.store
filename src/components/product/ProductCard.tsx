@@ -69,7 +69,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="group relative bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
       {/* Image container */}
-      <Link href={`/product/${product.slug}`} className="block relative aspect-square overflow-hidden bg-gray-50">
+      <Link href={`/product?slug=${product.slug}`} className="block relative aspect-square overflow-hidden bg-gray-50">
         <img
           src={product.images[0]}
           alt={product.title}
@@ -125,7 +125,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       {/* Card body */}
       <div className="p-3 flex flex-col flex-1">
-        <Link href={`/product/${product.slug}`} className="flex-1">
+        <Link href={`/product?slug=${product.slug}`} className="flex-1">
           <p className="text-[10px] font-semibold uppercase tracking-wider text-[#E591A4] mb-1">
             VEHA SILVER
           </p>

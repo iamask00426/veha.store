@@ -8,6 +8,7 @@ import { safeLocalStorageGet, safeLocalStorageSet } from "@/lib/utils";
 
 interface StoreContextType {
   products: Product[];
+  loaded: boolean;
   orders: Order[];
   coupons: Coupon[];
   addProduct: (product: Omit<Product, "id" | "slug">) => void;
@@ -34,14 +35,16 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     if (localProducts && localProducts.length > 0) {
       const migrated = localProducts.map(p => ({
         ...p,
-        stock: p.stock !== undefined ? p.stock : (p.inStock ? 10 : 0)
+        stock: p.stock !== undefined ? p.stock : (p.inStock ? 10 : 0),
+        isActive: p.isActive !== undefined ? p.isActive : true
       }));
       setProducts(migrated);
       safeLocalStorageSet("veha_products", migrated);
     } else {
       const seeded = initialProducts.map(p => ({
         ...p,
-        stock: p.inStock ? 10 : 0
+        stock: p.inStock ? 10 : 0,
+        isActive: true
       }));
       setProducts(seeded);
       safeLocalStorageSet("veha_products", seeded);
@@ -174,7 +177,8 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       rating: 5,
       reviewCount: 0,
       stock,
-      inStock: stock > 0
+      inStock: stock > 0,
+      isActive: p.isActive !== undefined ? p.isActive : true
     };
 
     saveProducts([newProduct, ...products]);
@@ -356,6 +360,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     <StoreContext.Provider
       value={{
         products: loaded ? products : initialProducts,
+        loaded,
         orders,
         coupons: loaded ? coupons : initialCoupons,
         addProduct,

@@ -45,7 +45,7 @@ function sortProducts(arr: Product[], sort: SortOption): Product[] {
 function WatchCard({ product }: { product: Product }) {
   return (
     <Link
-      href={`/product/${product.slug}`}
+      href={`/product?slug=${product.slug}`}
       className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:border-[#A1A8B8] hover:shadow-lg transition-all duration-300"
     >
       <div className="relative aspect-square overflow-hidden bg-gray-50">
@@ -95,7 +95,7 @@ function WatchesContent() {
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
   const baseProducts = useMemo(
-    () => products.filter((p) => p.categorySlug === "watches"),
+    () => products.filter((p) => p.isActive !== false && p.categorySlug === "watches"),
     [products]
   );
 

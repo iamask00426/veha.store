@@ -13,7 +13,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 interface ProductClientPageProps {
-  initialProduct: Product;
+  initialProduct?: Product;
   productReviews: Review[];
   slug: string;
 }
@@ -24,6 +24,7 @@ function RelatedProducts({ current, allProducts }: { current: Product; allProduc
       .filter(
         (p) =>
           p.id !== current.id &&
+          p.isActive !== false &&
           (p.brandSlug === current.brandSlug ||
             p.categorySlug === current.categorySlug)
       )
@@ -41,7 +42,7 @@ function RelatedProducts({ current, allProducts }: { current: Product; allProduc
         {related.map((p) => (
           <Link
             key={p.id}
-            href={`/product/${p.slug}`}
+            href={`/product?slug=${p.slug}`}
             className="flex-shrink-0 w-44 bg-white rounded-2xl border border-gray-100 hover:border-[#A1A8B8] hover:shadow-md transition-all overflow-hidden group"
           >
             <div className="relative w-full h-44 bg-gray-50">
@@ -77,15 +78,23 @@ function RelatedProducts({ current, allProducts }: { current: Product; allProduc
 }
 
 export default function ProductClientPage({ initialProduct, productReviews, slug }: ProductClientPageProps) {
-  const { products } = useStore();
+  const { products, loaded } = useStore();
 
   // Find latest product details (sync with admin changes)
   const product = useMemo(() => {
     return products.find((p) => p.slug === slug) ?? initialProduct;
   }, [products, slug, initialProduct]);
 
-  if (!product) {
+  if (loaded && (!product || product.isActive === false)) {
     notFound();
+  }
+
+  if (!product) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="animate-spin w-8 h-8 border-4 border-[#D06780] border-t-transparent rounded-full" />
+      </div>
+    );
   }
 
   const discountLabel = product.discountPct > 0 ? getDiscountLabel(product.discountPct) : null;

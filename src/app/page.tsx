@@ -1,4 +1,7 @@
-import { products } from "@/lib/data/products";
+"use client";
+
+import React, { useMemo } from "react";
+import { useStore } from "@/context";
 import type { Product } from "@/types";
 
 import HeroBannerCarousel from "@/components/home/HeroBannerCarousel";
@@ -13,29 +16,31 @@ import Link from "next/link";
 
 function getTrending(all: Product[]): Product[] {
   return all
-    .filter((p) => p.badges.includes("Trending") || p.rating >= 4.5)
+    .filter((p) => p.isActive !== false && (p.badges.includes("Trending") || p.rating >= 4.5))
     .slice(0, 12);
 }
 
 function getNewArrivals(all: Product[]): Product[] {
-  return all.filter((p) => p.badges.includes("New")).slice(0, 12);
+  return all.filter((p) => p.isActive !== false && p.badges.includes("New")).slice(0, 12);
 }
 
 function getBudget(all: Product[]): Product[] {
-  return all.filter((p) => p.price < 999).slice(0, 12);
+  return all.filter((p) => p.isActive !== false && p.price < 999).slice(0, 12);
 }
 
 function getEditorsPick(all: Product[]): Product[] {
-  return all.filter((p) => p.badges.includes("Exclusive")).slice(0, 12);
+  return all.filter((p) => p.isActive !== false && p.badges.includes("Exclusive")).slice(0, 12);
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function HomePage() {
-  const trending = getTrending(products);
-  const newArrivals = getNewArrivals(products);
-  const budget = getBudget(products);
-  const editorsPick = getEditorsPick(products);
+  const { products } = useStore();
+  
+  const trending = useMemo(() => getTrending(products), [products]);
+  const newArrivals = useMemo(() => getNewArrivals(products), [products]);
+  const budget = useMemo(() => getBudget(products), [products]);
+  const editorsPick = useMemo(() => getEditorsPick(products), [products]);
 
   return (
     <div className="w-full">
