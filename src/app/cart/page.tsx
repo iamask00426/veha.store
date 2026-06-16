@@ -4,8 +4,7 @@ import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ShoppingBag, X, Lock, Trash2 } from "lucide-react";
-import { useCart } from "@/context/CartContext";
-import { coupons } from "@/lib/data";
+import { useCart, useStore } from "@/context";
 import { formatINR, calcCartTotal, calcCartMRP, safeLocalStorageGet, safeLocalStorageSet } from "@/lib/utils";
 import QuantitySelector from "@/components/product/QuantitySelector";
 
@@ -14,6 +13,7 @@ const SHIPPING_COST = 99;
 
 export default function CartPage() {
   const { items, removeFromCart, updateQty, clearCart } = useCart();
+  const { coupons } = useStore();
 
   const [couponCode, setCouponCode] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState<any>(null);
@@ -67,6 +67,10 @@ export default function CartPage() {
     );
     if (!found) {
       setCouponError("Invalid coupon code. Please try again.");
+      return;
+    }
+    if (found.isActive === false) {
+      setCouponError("This coupon is currently inactive.");
       return;
     }
     if (subtotal < found.minOrder) {
