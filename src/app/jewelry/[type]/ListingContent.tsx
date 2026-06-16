@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { SlidersHorizontal, X } from "lucide-react";
-import { products } from "@/lib/data";
+import { useStore } from "@/context";
 import type { Product } from "@/types";
 import { formatINR, getDiscountLabel } from "@/lib/utils";
 import FilterSidebar from "@/components/listing/FilterSidebar";
@@ -112,6 +112,7 @@ function ProductGridCard({ product }: { product: Product }) {
 }
 
 export default function ListingContent({ type }: { type: string }) {
+  const { products } = useStore();
   const typeInfo = TYPE_MAP[type] ?? {
     label: type.charAt(0).toUpperCase() + type.slice(1),
   };
@@ -129,7 +130,7 @@ export default function ListingContent({ type }: { type: string }) {
       if (typeInfo.metal && p.metal !== typeInfo.metal) return false;
       return true;
     });
-  }, [typeInfo]);
+  }, [products, typeInfo]);
 
   const filtered = useMemo(() => {
     return baseProducts.filter((p) => {

@@ -4,7 +4,7 @@ import { Suspense, useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { SlidersHorizontal, X, Watch } from "lucide-react";
-import { products } from "@/lib/data";
+import { useStore } from "@/context";
 import type { Product } from "@/types";
 import { formatINR, getDiscountLabel } from "@/lib/utils";
 import FilterChips from "@/components/listing/FilterChips";
@@ -87,6 +87,7 @@ function WatchCard({ product }: { product: Product }) {
 }
 
 function WatchesContent() {
+  const { products } = useStore();
   const [priceRange, setPriceRange] = useState("");
   const [selectedGender, setSelectedGender] = useState("");
   const [sort, setSort] = useState<SortOption>("popularity");
@@ -95,7 +96,7 @@ function WatchesContent() {
 
   const baseProducts = useMemo(
     () => products.filter((p) => p.categorySlug === "watches"),
-    []
+    [products]
   );
 
   const filtered = useMemo(() => {

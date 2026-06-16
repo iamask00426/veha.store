@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import { CartProvider, WishlistProvider, ToastProvider } from "@/context";
+import { CartProvider, WishlistProvider, ToastProvider, StoreProvider } from "@/context";
 import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -40,18 +40,20 @@ export default function RootLayout({
   return (
     <html lang="en" className={`h-full antialiased ${inter.variable} ${playfair.variable}`}>
       <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--text-primary)]">
-        <CartProvider>
-          <WishlistProvider>
-            <ToastProvider>
-              <AnnouncementBar />
-              <Navbar />
-              <main className="flex-1">
-                {children}
-              </main>
-              <Footer />
-            </ToastProvider>
-          </WishlistProvider>
-        </CartProvider>
+        <StoreProvider>
+          <CartProvider>
+            <WishlistProvider>
+              <ToastProvider>
+                <AnnouncementBar />
+                <Navbar />
+                <main className="flex-1">
+                  {children}
+                </main>
+                <Footer />
+              </ToastProvider>
+            </WishlistProvider>
+          </CartProvider>
+        </StoreProvider>
       </body>
     </html>
   );

@@ -200,6 +200,9 @@ export default function Navbar() {
             <Link href="/sale" className="px-3 py-2 text-sm font-medium text-red-600 hover:text-red-700 rounded-lg hover:bg-red-50 transition-colors">
               Sale
             </Link>
+            <Link href="/admin" className="px-3 py-2 text-sm font-bold text-[#D06780] hover:text-[#9C3E55] rounded-lg hover:bg-[#FDE9EC]/50 transition-colors">
+              Admin
+            </Link>
           </nav>
 
           {/* Right icons */}

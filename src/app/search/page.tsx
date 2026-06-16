@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Search, SearchX } from "lucide-react";
-import { products } from "@/lib/data";
+import { useStore } from "@/context";
 import type { Product } from "@/types";
 import { formatINR, getDiscountLabel } from "@/lib/utils";
 import StarRating from "@/components/ui/StarRating";
@@ -66,6 +66,7 @@ function SearchResultCard({ product }: { product: Product }) {
 }
 
 function PopularScroll() {
+  const { products } = useStore();
   const popular = products.slice(0, 10);
   return (
     <div className="mt-8">
@@ -107,6 +108,7 @@ function PopularScroll() {
 }
 
 function SearchContent() {
+  const { products } = useStore();
   const searchParams = useSearchParams();
   const router = useRouter();
   const initialQ = searchParams.get("q") ?? "";

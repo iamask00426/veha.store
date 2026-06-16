@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ShoppingBag, X, Lock, Trash2 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { coupons } from "@/lib/data";
-import { formatINR, calcCartTotal, calcCartMRP } from "@/lib/utils";
+import { formatINR, calcCartTotal, calcCartMRP, safeLocalStorageGet, safeLocalStorageSet } from "@/lib/utils";
 import QuantitySelector from "@/components/product/QuantitySelector";
 
 const FREE_SHIPPING_THRESHOLD = 499;
@@ -16,9 +16,17 @@ export default function CartPage() {
   const { items, removeFromCart, updateQty, clearCart } = useCart();
 
   const [couponCode, setCouponCode] = useState("");
-  const [appliedCoupon, setAppliedCoupon] = useState<(typeof coupons)[0] | null>(null);
+  const [appliedCoupon, setAppliedCoupon] = useState<any>(null);
   const [couponError, setCouponError] = useState("");
   const [couponSuccess, setCouponSuccess] = useState("");
+
+  // Load coupon from localStorage on mount
+  useEffect(() => {
+    const saved = safeLocalStorageGet<any>("veha_applied_coupon", null);
+    if (saved) {
+      setAppliedCoupon(saved);
+    }
+  }, []);
 
   const subtotal = useMemo(() => calcCartTotal(items), [items]);
   const mrpTotal = useMemo(() => calcCartMRP(items), [items]);
@@ -35,6 +43,21 @@ export default function CartPage() {
   }, [appliedCoupon, subtotal, shipping]);
 
   const total = subtotal + shipping - couponDiscount;
+
+  // Validate applied coupon whenever items or subtotal changes
+  useEffect(() => {
+    if (appliedCoupon) {
+      if (items.length === 0) {
+        setAppliedCoupon(null);
+        safeLocalStorageSet("veha_applied_coupon", null);
+      } else if (subtotal < appliedCoupon.minOrder) {
+        setAppliedCoupon(null);
+        safeLocalStorageSet("veha_applied_coupon", null);
+        setCouponError(`Coupon "${appliedCoupon.code}" removed because order subtotal is below ${formatINR(appliedCoupon.minOrder)}`);
+        setCouponSuccess("");
+      }
+    }
+  }, [items, subtotal, appliedCoupon]);
 
   function applyCoupon() {
     setCouponError("");
@@ -55,12 +78,14 @@ export default function CartPage() {
       return;
     }
     setAppliedCoupon(found);
+    safeLocalStorageSet("veha_applied_coupon", found);
     setCouponSuccess(`Coupon "${found.code}" applied! ${found.description ?? ""}`);
     setCouponCode("");
   }
 
   function removeCoupon() {
     setAppliedCoupon(null);
+    safeLocalStorageSet("veha_applied_coupon", null);
     setCouponSuccess("");
     setCouponError("");
   }
@@ -285,9 +310,12 @@ export default function CartPage() {
               </div>
 
               {/* Checkout button */}
-              <button className="w-full mt-5 py-3.5 bg-[#D06780] text-[#FDE9EC] rounded-xl font-bold text-base hover:bg-[#9C3E55] active:scale-[0.98] transition-all shadow-md">
+              <Link
+                href="/checkout"
+                className="w-full mt-5 py-3.5 bg-[#D06780] text-[#FDE9EC] rounded-xl font-bold text-base hover:bg-[#9C3E55] active:scale-[0.98] transition-all shadow-md flex items-center justify-center"
+              >
                 Proceed to Checkout
-              </button>
+              </Link>
 
               {/* Safe checkout */}
               <div className="mt-4 flex items-center justify-center gap-3 text-xs text-gray-400">

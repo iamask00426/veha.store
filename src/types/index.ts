@@ -101,3 +101,29 @@ export interface WishlistItem {
   productId: string;
   addedAt: string;
 }
+
+// ─── Orders ──────────────────────────────────────────────────────────────────
+
+export type OrderStatus = "Pending" | "Shipped" | "Delivered" | "Cancelled";
+
+export interface OrderCustomer {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  city: string;
+  zip: string;
+}
+
+export interface Order {
+  id: string;
+  customer: OrderCustomer;
+  items: CartItem[];
+  subtotal: number;
+  discount: number;
+  shipping: number;
+  total: number;
+  status: OrderStatus;
+  createdAt: string;
+  paymentMethod: string;
+}
