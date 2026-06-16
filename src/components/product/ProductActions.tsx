@@ -23,12 +23,15 @@ export default function ProductActions({ product }: ProductActionsProps) {
   const [qty, setQty] = useState(1);
   const [addedFeedback, setAddedFeedback] = useState(false);
 
+  const isOOS = product.stock === 0 || !product.inStock;
+  const maxStock = product.stock !== undefined ? product.stock : 10;
   const selectedVariant = product.variants.find((v) => v.id === selectedVariantId);
   const price = selectedVariant?.price ?? product.price;
   const inCart = isInCart(product.id, selectedVariantId);
   const wishlisted = isWishlisted(product.id);
 
   function handleAddToCart() {
+    if (isOOS) return;
     addToCart({
       productId: product.id,
       variantId: selectedVariantId,
@@ -56,12 +59,12 @@ export default function ProductActions({ product }: ProductActionsProps) {
 
       {/* Qty + Add to Cart */}
       <div className="flex flex-col sm:flex-row gap-3">
-        <QuantitySelector qty={qty} onChange={setQty} />
+        <QuantitySelector qty={isOOS ? 0 : qty} onChange={setQty} min={isOOS ? 0 : 1} max={isOOS ? 0 : maxStock} />
         <button
           onClick={handleAddToCart}
-          disabled={!product.inStock}
+          disabled={isOOS}
           className={`flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-base transition-all duration-200 shadow-md ${
-            !product.inStock
+            isOOS
               ? "bg-gray-300 text-gray-500 cursor-not-allowed"
               : addedFeedback
               ? "bg-green-600 text-white scale-[0.98]"
@@ -71,7 +74,7 @@ export default function ProductActions({ product }: ProductActionsProps) {
           }`}
         >
           <ShoppingCart size={20} />
-          {!product.inStock
+          {isOOS
             ? "Out of Stock"
             : addedFeedback
             ? "Added to Cart!"

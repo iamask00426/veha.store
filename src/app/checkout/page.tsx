@@ -11,7 +11,7 @@ import Image from "next/image";
 export default function CheckoutPage() {
   const router = useRouter();
   const { items, totalItems, clearCart } = useCart();
-  const { createOrder } = useStore();
+  const { createOrder, products } = useStore();
   const { showToast } = useToast();
 
   const [formData, setFormData] = useState({
@@ -79,6 +79,18 @@ export default function CheckoutPage() {
       return;
     }
 
+    // Verify stock availability
+    for (const item of items) {
+      const match = products.find(p => p.id === item.productId);
+      if (match) {
+        const availableStock = match.stock ?? 10;
+        if (item.qty > availableStock) {
+          showToast(`Sorry, only ${availableStock} units left for "${item.title}"`, "error");
+          return;
+        }
+      }
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -92,7 +104,8 @@ export default function CheckoutPage() {
         discount,
         shipping,
         total,
-        paymentMethod
+        paymentMethod,
+        appliedCoupon?.code
       );
 
       showToast("Order Placed Successfully! 🎉", "success");

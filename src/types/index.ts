@@ -35,6 +35,7 @@ export interface Product {
   virtualTryOn: boolean;
   sameDayDelivery: boolean;
   inStock: boolean;
+  stock?: number;
   description?: string;
 }
 
@@ -82,6 +83,9 @@ export interface Coupon {
   appliesTo: "all" | string[]; // "all" or array of categorySlug / brandSlug
   description?: string;
   expiresAt?: string;
+  usageCount?: number;
+  maxUses?: number;
+  isActive?: boolean;
 }
 
 // ─── Cart & Wishlist ────────────────────────────────────────────────────────
@@ -126,4 +130,6 @@ export interface Order {
   status: OrderStatus;
   createdAt: string;
   paymentMethod: string;
+  trackingId?: string;
+  carrier?: string;
 }

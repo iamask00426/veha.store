@@ -33,12 +33,14 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { isWishlisted, toggleWishlist } = useWishlist();
   const { showToast } = useToast();
 
+  const isOOS = product.stock === 0 || !product.inStock;
   const wishlisted = isWishlisted(product.id);
   const inCart = isInCart(product.id);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    if (isOOS) return;
     addToCart({
       productId: product.id,
       variantId: product.variants[0]?.id ?? null,
@@ -71,12 +73,21 @@ export default function ProductCard({ product }: ProductCardProps) {
         <img
           src={product.images[0]}
           alt={product.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${isOOS ? "grayscale opacity-60" : ""}`}
           loading="lazy"
         />
 
+        {/* Out of Stock overlay */}
+        {isOOS && (
+          <div className="absolute inset-0 bg-black/10 flex items-center justify-center">
+            <span className="bg-white/95 text-gray-900 font-bold px-3 py-1.5 rounded-xl text-xs uppercase tracking-wider shadow-md">
+              Out of Stock
+            </span>
+          </div>
+        )}
+
         {/* Top-left badges */}
-        {displayBadges.length > 0 && (
+        {displayBadges.length > 0 && !isOOS && (
           <div className="absolute top-2.5 left-2.5 flex flex-col gap-1">
             {displayBadges.map((badge) => (
               <Badge key={badge} label={badge} variant={getBadgeVariant(badge)} />
@@ -144,14 +155,17 @@ export default function ProductCard({ product }: ProductCardProps) {
         {/* Add to cart */}
         <button
           onClick={handleAddToCart}
+          disabled={isOOS}
           className={`mt-3 w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-            inCart
+            isOOS
+              ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+              : inCart
               ? "bg-green-600 text-white hover:bg-green-700"
               : "bg-[#D06780] text-[#FDE9EC] hover:bg-[#9C3E55]"
           }`}
         >
           <ShoppingBag size={15} />
-          {inCart ? "In Cart ✓" : "Add to Cart"}
+          {isOOS ? "Out of Stock" : inCart ? "In Cart ✓" : "Add to Cart"}
         </button>
       </div>
     </div>

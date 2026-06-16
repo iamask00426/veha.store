@@ -13,8 +13,8 @@ interface StoreContextType {
   addProduct: (product: Omit<Product, "id" | "slug">) => void;
   updateProduct: (id: string, updatedFields: Partial<Product>) => void;
   deleteProduct: (id: string) => void;
-  createOrder: (customer: OrderCustomer, items: CartItem[], subtotal: number, discount: number, shipping: number, total: number, paymentMethod: string) => string;
-  updateOrderStatus: (orderId: string, status: OrderStatus) => void;
+  createOrder: (customer: OrderCustomer, items: CartItem[], subtotal: number, discount: number, shipping: number, total: number, paymentMethod: string, couponCode?: string) => string;
+  updateOrderStatus: (orderId: string, status: OrderStatus, trackingId?: string, carrier?: string) => void;
   addCoupon: (coupon: Coupon) => void;
   deleteCoupon: (code: string) => void;
 }
@@ -32,10 +32,19 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     // Products
     const localProducts = safeLocalStorageGet<Product[]>("veha_products", []);
     if (localProducts && localProducts.length > 0) {
-      setProducts(localProducts);
+      const migrated = localProducts.map(p => ({
+        ...p,
+        stock: p.stock !== undefined ? p.stock : (p.inStock ? 10 : 0)
+      }));
+      setProducts(migrated);
+      safeLocalStorageSet("veha_products", migrated);
     } else {
-      setProducts(initialProducts);
-      safeLocalStorageSet("veha_products", initialProducts);
+      const seeded = initialProducts.map(p => ({
+        ...p,
+        stock: p.inStock ? 10 : 0
+      }));
+      setProducts(seeded);
+      safeLocalStorageSet("veha_products", seeded);
     }
 
     // Orders
@@ -113,10 +122,21 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     // Coupons
     const localCoupons = safeLocalStorageGet<Coupon[]>("veha_coupons", []);
     if (localCoupons && localCoupons.length > 0) {
-      setCoupons(localCoupons);
+      const migrated = localCoupons.map(c => ({
+        ...c,
+        usageCount: c.usageCount !== undefined ? c.usageCount : 0,
+        isActive: c.isActive !== undefined ? c.isActive : true
+      }));
+      setCoupons(migrated);
+      safeLocalStorageSet("veha_coupons", migrated);
     } else {
-      setCoupons(initialCoupons);
-      safeLocalStorageSet("veha_coupons", initialCoupons);
+      const seeded = initialCoupons.map(c => ({
+        ...c,
+        usageCount: 0,
+        isActive: true
+      }));
+      setCoupons(seeded);
+      safeLocalStorageSet("veha_coupons", seeded);
     }
 
     setLoaded(true);
@@ -146,12 +166,15 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)/g, "");
     
+    const stock = p.stock !== undefined ? p.stock : 10;
     const newProduct: Product = {
       ...p,
       id,
       slug,
       rating: 5,
-      reviewCount: 0
+      reviewCount: 0,
+      stock,
+      inStock: stock > 0
     };
 
     saveProducts([newProduct, ...products]);
@@ -168,10 +191,17 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
               .replace(/(^-|-$)/g, "")
           : p.slug;
 
+        const stock = updatedFields.stock !== undefined ? updatedFields.stock : p.stock;
+        const inStock = updatedFields.inStock !== undefined 
+          ? updatedFields.inStock 
+          : (stock !== undefined ? stock > 0 : p.inStock);
+
         return {
           ...p,
           ...updatedFields,
-          slug
+          slug,
+          stock,
+          inStock
         };
       }
       return p;
@@ -191,7 +221,8 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     discount: number,
     shipping: number,
     total: number,
-    paymentMethod: string
+    paymentMethod: string,
+    couponCode?: string
   ): string => {
     const id = "ORD-" + Math.floor(1000 + Math.random() * 9000);
     const newOrder: Order = {
@@ -207,14 +238,95 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       paymentMethod
     };
 
+    // Deduct product stocks
+    const updatedProducts = products.map(p => {
+      const orderItem = items.find(item => item.productId === p.id);
+      if (orderItem) {
+        const currentStock = p.stock ?? 10;
+        const newStock = Math.max(0, currentStock - orderItem.qty);
+        return {
+          ...p,
+          stock: newStock,
+          inStock: newStock > 0
+        };
+      }
+      return p;
+    });
+    saveProducts(updatedProducts);
+
+    // Increment coupon usage
+    if (couponCode) {
+      const updatedCoupons = coupons.map(c => {
+        if (c.code.toUpperCase() === couponCode.toUpperCase()) {
+          return {
+            ...c,
+            usageCount: (c.usageCount ?? 0) + 1
+          };
+        }
+        return c;
+      });
+      saveCoupons(updatedCoupons);
+    }
+
     saveOrders([newOrder, ...orders]);
     return id;
   };
 
-  const updateOrderStatus = (orderId: string, status: OrderStatus) => {
+  const updateOrderStatus = (
+    orderId: string, 
+    status: OrderStatus, 
+    trackingId?: string, 
+    carrier?: string
+  ) => {
+    const orderToUpdate = orders.find(o => o.id === orderId);
+    if (!orderToUpdate) return;
+
+    const prevStatus = orderToUpdate.status;
+    
+    // Restock if cancelled
+    if (status === "Cancelled" && prevStatus !== "Cancelled") {
+      const updatedProducts = products.map(p => {
+        const orderItem = orderToUpdate.items.find(item => item.productId === p.id);
+        if (orderItem) {
+          const currentStock = p.stock ?? 0;
+          const newStock = currentStock + orderItem.qty;
+          return {
+            ...p,
+            stock: newStock,
+            inStock: newStock > 0
+          };
+        }
+        return p;
+      });
+      saveProducts(updatedProducts);
+    }
+
+    // Deduct stock if un-cancelled
+    if (prevStatus === "Cancelled" && status !== "Cancelled") {
+      const updatedProducts = products.map(p => {
+        const orderItem = orderToUpdate.items.find(item => item.productId === p.id);
+        if (orderItem) {
+          const currentStock = p.stock ?? 0;
+          const newStock = Math.max(0, currentStock - orderItem.qty);
+          return {
+            ...p,
+            stock: newStock,
+            inStock: newStock > 0
+          };
+        }
+        return p;
+      });
+      saveProducts(updatedProducts);
+    }
+
     const updated = orders.map((o) => {
       if (o.id === orderId) {
-        return { ...o, status };
+        return { 
+          ...o, 
+          status,
+          trackingId: trackingId !== undefined ? trackingId : o.trackingId,
+          carrier: carrier !== undefined ? carrier : o.carrier
+        };
       }
       return o;
     });
@@ -228,7 +340,9 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     }
     const newCoupon: Coupon = {
       ...c,
-      code: c.code.toUpperCase()
+      code: c.code.toUpperCase(),
+      usageCount: 0,
+      isActive: true
     };
     saveCoupons([...coupons, newCoupon]);
   };
